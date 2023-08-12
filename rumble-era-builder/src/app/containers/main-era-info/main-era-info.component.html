@@ -1,10 +1,10 @@
 <div [formGroup]="formGroup">
     <div class="form-row">
         <mat-form-field appearance="outline">
-            <mat-label>Name</mat-label>
-            <input id="era-name" type="text" matInput formControlName="name">
+            <mat-label>Era Name</mat-label>
+            <input id="era-name" placeholder="Magical" type="text" matInput formControlName="name">
             <mat-hint>Short text. Ideally one word.</mat-hint>
-            <mat-error *ngIf="formGroup.controls.name.hasError">
+            <mat-error *ngIf="formGroup.controls.name.errors">
                 {{ formGroup.controls.name.errorMessage }}
             </mat-error>
         </mat-form-field>
@@ -17,6 +17,9 @@
             <ngx-mat-color-toggle matSuffix [for]="picker" />
             <ngx-mat-color-picker #picker />
             <mat-hint>Used for embeds. Choose using the colour palette button.</mat-hint>
+            <mat-error *ngIf="formGroup.controls.colour.errors">
+                {{ formGroup.controls.colour.errorMessage }}
+            </mat-error>
         </mat-form-field>
     </div>
 </div>
