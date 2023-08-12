@@ -1,1 +1,13 @@
-<p>era-builder works!</p>
+<div class="content">
+    <h1>Main Era Info</h1>
+    <form>
+        <app-main-era-info [formGroup]="formGroup" />
+    </form>
+
+    <div class="form-row">
+        <button mat-raised-button color="primary" (click)="buildEra()">Build</button>
+    </div>
+    <div class="form-row">
+        <textarea cols="100" rows="20">{{ eraJson }}</textarea>
+    </div>
+</div>

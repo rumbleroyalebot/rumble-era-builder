@@ -1,0 +1,22 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"files.exclude": {
+			"**/.git": true,
+			"LICENSE": true,
+			"**/.angular": true,
+			"**/dist": true,
+			"**/node_modules": true
+		},
+		"typescript.preferences.quoteStyle": "double",
+		"javascript.preferences.quoteStyle": "double",
+		"editor.codeActionsOnSave": {
+			"source.fixAll": true,
+			"source.organizeImports": false
+		},
+	}
+}

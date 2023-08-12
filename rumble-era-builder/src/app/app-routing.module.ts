@@ -1,7 +1,6 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { EraBuilderComponent } from "./containers/era-builder/era-builder.component";
-import { AppComponent } from "./app.component";
 import { IndexPageComponent } from "./containers/index-page/index-page.component";
 
 const routes: Routes = [
