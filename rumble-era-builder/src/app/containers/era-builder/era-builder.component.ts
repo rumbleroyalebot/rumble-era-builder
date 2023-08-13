@@ -13,7 +13,6 @@ export class EraBuilderComponent {
   public formGroup: IFormGroup<EraMainForm>;
 
   public eraJson = "";
-  public lineCount = 10;
 
   constructor(
     private readonly jsonService: EraJsonGeneratorService,
@@ -38,12 +37,10 @@ export class EraBuilderComponent {
     } else {
       this.eraJson = this.getErrorMessages();
     }
-    this.lineCount = this.eraJson.split("\n").length;
   }
 
   public loadEra(text: string) {
     const era = this.jsonService.parseJSON(text);
     this.formGroup.patchModelValue(era);
-    this.lineCount = text.split("\n").length;
   }
 }

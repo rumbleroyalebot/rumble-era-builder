@@ -17,6 +17,8 @@ export class EraJsonGeneratorService {
       name: era.name,
       type: "custom",
       colour: parseInt(era.colour?.toHex(), 16) ?? 0,
+      icon: era.icon,
+      emoji: era.emoji,
     };
     return json;
   }
@@ -27,6 +29,8 @@ export class EraJsonGeneratorService {
       const era = new EraMainForm();
       era.name = parsed.name;
       era.colour = this.createColorFromNumber(parsed.colour);
+      era.icon = parsed.icon;
+      era.emoji = parsed.emoji;
       return era;
     } catch (e) {
       return new EraMainForm();

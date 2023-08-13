@@ -9,7 +9,7 @@
 
     <h2>Ouput:</h2>
     <div class="form-row">
-        <textarea matInput class="output" style="resize: none;" [rows]="lineCount" #JSONOutput>{{ eraJson }}</textarea>
+        <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="5" class="output" style="resize: none;" #JSONOutput [value]="eraJson"></textarea>
     </div>
 
     <div class="form-row">

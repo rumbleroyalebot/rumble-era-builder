@@ -22,4 +22,26 @@
             </mat-error>
         </mat-form-field>
     </div>
+
+    <div class="form-row">
+        <mat-form-field appearance="outline">
+            <mat-label>Icon</mat-label>
+            <input placeholder="https://example.com/image.png" type="url" matInput formControlName="icon">
+            <mat-hint>Era icon. Used in embed footers. Must be a link to an image. Use image hosting service like <a href="https://imgur.com/upload">Imgur</a>.</mat-hint>
+            <mat-error *ngIf="formGroup.controls.icon.errors">
+                {{ formGroup.controls.icon.errorMessage }}
+            </mat-error>
+        </mat-form-field>
+    </div>
+
+    <div class="form-row">
+        <mat-form-field appearance="outline">
+            <mat-label>Emoji</mat-label>
+            <input placeholder="&lt;:leghorse:123456789&gt;" type="url" matInput formControlName="emoji">
+            <mat-hint>Era emoji. Should be visually similar to the icon above. Must follow Discord format of &lt;:name:id&gt;.</mat-hint>
+            <mat-error *ngIf="formGroup.controls.emoji.errors">
+                {{ formGroup.controls.emoji.errorMessage }}
+            </mat-error>
+        </mat-form-field>
+    </div>
 </div>
