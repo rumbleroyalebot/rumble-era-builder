@@ -1,5 +1,6 @@
 import { Color } from "@angular-material-components/color-picker";
-import { alphaNumeric, maxLength, pattern, prop, required, trim } from "@rxweb/reactive-form-validators";
+import { alphaNumeric, maxLength, pattern, prop, propArray, required, trim } from "@rxweb/reactive-form-validators";
+import { PhraseForm } from "./phrase-form";
 
 export class EraMainForm {
     @prop()
@@ -20,6 +21,15 @@ export class EraMainForm {
     public icon = "";
 
     @prop()
-    @pattern({ expression: { discordEmoji: /^<(?:a)?:[a-zA-Z0-9]{1,30}:[0-9]{1,20}>$/ }, message: "Invalid Discord emoji format. Must be either <:name:id> or <a:name:id>." })
+    @pattern({ expression: { discordEmoji: /^<(?:a)?:[a-zA-Z0-9_-]{1,30}:[0-9]{1,20}>$/ }, message: "Invalid Discord emoji format. Must be either <:name:id> or <a:name:id>." })
     public emoji = "";
+
+    @propArray()
+    public loadingPhrases: PhraseForm[] = [];
+
+    @propArray()
+    public killPhrases: PhraseForm[] = [];
+
+    @propArray()
+    public revivePhrases: PhraseForm[] = [];
 }

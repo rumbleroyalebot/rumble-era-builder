@@ -1,0 +1,25 @@
+<div class="form-row">
+    <h2>{{ phraseTitle }}</h2>
+    <span class="info">
+        <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="info"></mat-icon>
+        <p>{{ infoText }}</p>
+    </span>
+</div>
+
+<ng-container *ngFor="let fg of formGroups; let i = index">
+    <div class="form-row" [formGroup]="fg">
+        <mat-form-field appearance="outline">
+            <mat-label> Phrase {{i+1}} </mat-label>
+            <input type="text" matInput formControlName="phrase">
+            <mat-error *ngIf="fg.controls.phrase.errors">
+                {{ fg.controls.phrase.errorMessage }}
+            </mat-error>
+        </mat-form-field>
+    </div>
+</ng-container>
+
+<div class="form-row buttons">
+    <button type="button" mat-raised-button color="secondary" (click)="addPhrase()">Add Phrase</button>
+    <button type="button" mat-raised-button color="warn" [disabled]="formGroups.length <= 1"
+        (click)="removePhrase()">Remove Last</button>
+</div>

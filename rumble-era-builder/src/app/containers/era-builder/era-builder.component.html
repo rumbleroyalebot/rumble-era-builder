@@ -1,18 +1,40 @@
 <div class="content">
     <form>
+        <h1>Main info</h1>
+
         <app-main-era-info [formGroup]="formGroup" />
+
+        <h1>Phrases</h1>
+
+        <app-phrase-builder-section phraseTitle="Loading Phrases"
+            infoText="Loading texts used in the countdown embeds. Three dots (...) will be automatically added after each phrase, do not include them here."
+            [placeholders]="['Brewing potions', 'Dusting old books' , 'Discovering new spells' , 'Drawing runes' , 'Polishing wands', 'Locking away forbidden scrolls' ]"
+            [playerCount]="0" [phraseFormArray]="loadingPhrasesFormArray" [phraseForm]="era?.loadingPhrases ?? []" />
+
+        <app-phrase-builder-section phraseTitle="Kill Phrases" infoText="Kill phrases - must include two players ({p1} and {p2})"
+            [placeholders]="['{p1} killed {p2}']" [playerCount]="2" [phraseFormArray]="killPhrasesFormArray"
+            [phraseForm]="era?.killPhrases ?? []" />
+
+            <app-phrase-builder-section phraseTitle="Revive Phrases" infoText="Revive phrases - must include one players ({p1})"
+            [placeholders]="['{p1} killed {p2}']" [playerCount]="1" [phraseFormArray]="revivePhrasesFormArray"
+            [phraseForm]="era?.revivePhrases ?? []" />
+
     </form>
 
+    <hr>
+
     <div class="form-row">
-        <button mat-raised-button color="primary" (click)="buildEra()">Build</button>
+        <button type="button" mat-raised-button color="accent" (click)="buildEra()">Build</button>
     </div>
 
     <h2>Ouput:</h2>
     <div class="form-row">
-        <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="5" class="output" style="resize: none;" #JSONOutput [value]="eraJson"></textarea>
+        <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="5" class="output" style="resize: none;" #JSONOutput
+            [value]="eraJson"></textarea>
     </div>
 
     <div class="form-row">
-        <button mat-raised-button color="secondary" (click)="loadEra(JSONOutput.value)">Load</button>
+        <button type="button" mat-raised-button color="accent" (click)="loadEra(JSONOutput.value)">Load</button>
     </div>
+
 </div>

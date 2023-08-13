@@ -15,6 +15,8 @@ import { EraBuilderComponent } from "./containers/era-builder/era-builder.compon
 import { IndexPageComponent } from "./containers/index-page/index-page.component";
 import { MainEraInfoComponent } from "./containers/main-era-info/main-era-info.component";
 import { MAT_COLOR_FORMATS, NGX_MAT_COLOR_FORMATS, NgxMatColorPickerModule } from "@angular-material-components/color-picker";
+import { PhraseBuilderSectionComponent } from "./containers/phrase-builder-section/phrase-builder-section.component";
+import { MatIconModule } from "@angular/material/icon";
 
 @NgModule({
   declarations: [
@@ -23,6 +25,7 @@ import { MAT_COLOR_FORMATS, NGX_MAT_COLOR_FORMATS, NgxMatColorPickerModule } fro
     IndexPageComponent,
     NavbarComponent,
     MainEraInfoComponent,
+    PhraseBuilderSectionComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -30,6 +33,7 @@ import { MAT_COLOR_FORMATS, NGX_MAT_COLOR_FORMATS, NgxMatColorPickerModule } fro
     BrowserModule,
     MatButtonModule,
     MatFormFieldModule,
+    MatIconModule,
     MatInputModule,
     MatToolbarModule,
     NgxMatColorPickerModule,
