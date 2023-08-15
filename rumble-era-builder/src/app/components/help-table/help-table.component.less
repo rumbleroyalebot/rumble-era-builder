@@ -1,22 +1,36 @@
-mat-table {
+.table {
     border-collapse: collapse;
     border-radius: 10px;
     border: 1px solid lightgray;
-    overflow: hidden;
-}
+    padding: 5px;
 
-mat-header-cell,
-mat-cell {
-    padding-top: 0;
-    padding-bottom: 0;
+    mat-header-cell,
+    mat-cell {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
 }
 
 .slider {
     margin-bottom: 10px;
 }
+
 .container {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
     margin: 5px;
+}
+
+.floating-help {
+    width: auto; /* or specify a fixed width, like 300px */
+    max-width: 100%;
+    min-width: 300px; /* for example, set a minimum width */
+
+    position: fixed;
+    top: 10px;
+    right: 20px;
+    z-index: 100;
+
+    background-color: transparent;
 }

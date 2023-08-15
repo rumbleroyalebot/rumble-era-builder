@@ -45,7 +45,6 @@ export class EraBuilderComponent implements OnInit {
     this.jsonService.loadSampleEra()
       .pipe(untilDestroyed(this))
       .subscribe(era => {
-        console.log(era);
         this.sampleEra = era;
         this.samplePhrases.loading = era.phrases.loading;
         this.samplePhrases.kill = Object.values(era.phrases.default.kill);

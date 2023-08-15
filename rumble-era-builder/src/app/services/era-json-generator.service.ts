@@ -56,7 +56,7 @@ export class EraJsonGeneratorService {
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public loadSampleEra(): Observable<any> {
-    return this.httpClient.get<object>("/assets/eras/sample.json");
+    return this.httpClient.get<object>("assets/eras/sample.json");
   }
 
   private createColorFromNumber(rgb: number): Color {
