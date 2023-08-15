@@ -2,6 +2,8 @@ import { Injectable } from "@angular/core";
 import { EraMainForm } from "../models/forms/era-main-form";
 import { Color } from "@angular-material-components/color-picker";
 import { PhraseForm } from "../models/forms/phrase-form";
+import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs";
 
 type JSONValue = string | number | boolean | null | JSONObject | JSONArray;
 type JSONObject = { [key: string]: JSONValue };
@@ -12,6 +14,9 @@ type JSONArray = JSONValue[];
   providedIn: "root"
 })
 export class EraJsonGeneratorService {
+
+  constructor(private readonly httpClient: HttpClient) {}
+
   public generateEraJSON(era: EraMainForm): JSONObject {
     const json: JSONObject = {
       name: era.name,
@@ -23,7 +28,8 @@ export class EraJsonGeneratorService {
         loading: this.phraseFormsToJSONArray(era.loadingPhrases),
         default: {
           kill: this.phraseFormsToJSON(era.killPhrases),
-          revive: this.phraseFormsToJSON(era.revivePhrases)
+          revive: this.phraseFormsToJSON(era.revivePhrases),
+          death: this.phraseFormsToJSON(era.deathPhrases),
         }
       }
     };
@@ -41,10 +47,16 @@ export class EraJsonGeneratorService {
       era.loadingPhrases = this.JSONtoPhraseForms(parsed.phrases.loading);
       era.killPhrases = this.JSONtoPhraseForms(parsed.phrases.default.kill);
       era.revivePhrases = this.JSONtoPhraseForms(parsed.phrases.default.revive);
+      era.deathPhrases = this.JSONtoPhraseForms(parsed.phrases.default.death);
       return era;
     } catch (e) {
       return new EraMainForm();
     }
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  public loadSampleEra(): Observable<any> {
+    return this.httpClient.get<object>("/assets/eras/sample.json");
   }
 
   private createColorFromNumber(rgb: number): Color {

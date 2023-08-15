@@ -2,26 +2,66 @@
     <form>
         <h1>Main info</h1>
 
-        <app-main-era-info [formGroup]="formGroup" />
+        <div class="mg-bottom border">
+            <app-main-era-info [formGroup]="formGroup" />
+        </div>
 
-        <h1>Phrases</h1>
+        <div class="phrase-container">
+            <div class="top-container">
+                <h1 class="title">Phrases</h1>
+                <app-help-table class="help-table" />
+            </div>
 
-        <app-phrase-builder-section phraseTitle="Loading Phrases"
-            infoText="Loading texts used in the countdown embeds. Three dots (...) will be automatically added after each phrase, do not include them here."
-            [placeholders]="['Brewing potions', 'Dusting old books' , 'Discovering new spells' , 'Drawing runes' , 'Polishing wands', 'Locking away forbidden scrolls' ]"
-            [playerCount]="0" [phraseFormArray]="loadingPhrasesFormArray" [phraseForm]="era?.loadingPhrases ?? []" />
+            <mat-tab-group class="mg-bottom border">
+                <mat-tab>
+                    <ng-template mat-tab-label>
+                        Loading phrases
+                        <mat-icon icon *ngIf="loadingPhrasesFormArray.touched && loadingPhrasesFormArray.invalid"
+                            class="tab-icon" fontIcon="warning" />
+                    </ng-template>
+                    <app-phrase-builder-section
+                        infoText="Loading texts used in the countdown embeds. Three dots (...) will be automatically added after each phrase, do not include them here."
+                        [placeholders]="samplePhrases.loading" [playerCount]="0"
+                        [phraseFormArray]="loadingPhrasesFormArray" [phraseForm]="era?.loadingPhrases ?? []" />
+                </mat-tab>
 
-        <app-phrase-builder-section phraseTitle="Kill Phrases" infoText="Kill phrases - must include two players ({p1} and {p2})"
-            [placeholders]="['{p1} killed {p2}']" [playerCount]="2" [phraseFormArray]="killPhrasesFormArray"
-            [phraseForm]="era?.killPhrases ?? []" />
+                <mat-tab>
+                    <ng-template mat-tab-label>
+                        Kill phrases
+                        <mat-icon icon *ngIf="killPhrasesFormArray.touched && killPhrasesFormArray.invalid"
+                            class="tab-icon" fontIcon="warning" />
+                    </ng-template>
+                    <app-phrase-builder-section infoText="Kill phrases - must include two players ({p1} and {p2})"
+                        [placeholders]="samplePhrases.kill" [playerCount]="2" [phraseFormArray]="killPhrasesFormArray"
+                        [phraseForm]="era?.killPhrases ?? []" />
+                </mat-tab>
 
-            <app-phrase-builder-section phraseTitle="Revive Phrases" infoText="Revive phrases - must include one players ({p1})"
-            [placeholders]="['{p1} killed {p2}']" [playerCount]="1" [phraseFormArray]="revivePhrasesFormArray"
-            [phraseForm]="era?.revivePhrases ?? []" />
+                <mat-tab>
+                    <ng-template mat-tab-label>
+                        Revive phrases
+                        <mat-icon icon *ngIf="revivePhrasesFormArray.touched && revivePhrasesFormArray.invalid"
+                            class="tab-icon" fontIcon="warning" />
+                    </ng-template>
+                    <app-phrase-builder-section infoText="Revive phrases - must include one player ({p1})"
+                        [placeholders]="samplePhrases.revive" [playerCount]="1"
+                        [phraseFormArray]="revivePhrasesFormArray" [phraseForm]="era?.revivePhrases ?? []" />
+                </mat-tab>
+
+                <mat-tab>
+                    <ng-template mat-tab-label>
+                        Death phrases
+                        <mat-icon icon *ngIf="deathPhrasesFormArray.touched && deathPhrasesFormArray.invalid"
+                            class="tab-icon" fontIcon="warning" />
+                    </ng-template>
+                    <app-phrase-builder-section infoText="Death phrases - must include one player ({p1})"
+                        [placeholders]="samplePhrases.death" [playerCount]="1" [phraseFormArray]="deathPhrasesFormArray"
+                        [phraseForm]="era?.deathPhrases ?? []" />
+                </mat-tab>
+            </mat-tab-group>
+        </div>
 
     </form>
 
-    <hr>
 
     <div class="form-row">
         <button type="button" mat-raised-button color="accent" (click)="buildEra()">Build</button>

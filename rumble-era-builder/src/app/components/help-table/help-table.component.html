@@ -1,0 +1,40 @@
+<div class="container">
+    <mat-slide-toggle class="slider" [(ngModel)]="showTable">Show pronouns formatting</mat-slide-toggle>
+
+    <mat-table *ngIf="showTable" [dataSource]="transposedData">
+
+        <ng-container matColumnDef="p1">
+            <mat-header-cell *matHeaderCellDef>p1</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{ element.p1 }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="p1_1">
+            <mat-header-cell *matHeaderCellDef>p1_1</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{ element.p1_1 }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="p1_1+">
+            <mat-header-cell *matHeaderCellDef>p1_1+</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{ element.p1_1plus }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="p1_2">
+            <mat-header-cell *matHeaderCellDef>p1_2</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{ element.p1_2 }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="p1_3">
+            <mat-header-cell *matHeaderCellDef>p1_3</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{ element.p1_3 }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="p1_w">
+            <mat-header-cell *matHeaderCellDef>p1_w</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{ element.p1_w }}</mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="transposedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: transposedColumns;"></mat-row>
+
+    </mat-table>
+</div>

@@ -32,4 +32,7 @@ export class EraMainForm {
 
     @propArray()
     public revivePhrases: PhraseForm[] = [];
+
+    @propArray()
+    public deathPhrases: PhraseForm[] = [];
 }

@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-
+import { AppModule } from "src/app/app.module";
 import { EraBuilderComponent } from "./era-builder.component";
 
 describe("EraBuilderComponent", () => {
@@ -8,7 +8,8 @@ describe("EraBuilderComponent", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [EraBuilderComponent]
+      declarations: [EraBuilderComponent],
+      imports: [AppModule],
     });
     fixture = TestBed.createComponent(EraBuilderComponent);
     component = fixture.componentInstance;

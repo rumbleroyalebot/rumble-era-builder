@@ -9,8 +9,6 @@ import { PhraseForm } from "src/app/models/forms/phrase-form";
   styleUrls: ["./phrase-builder-section.component.less"]
 })
 export class PhraseBuilderSectionComponent implements OnInit {
-  @Input({ required: true }) public phraseTitle = "";
-
   @Input() public infoText = "";
 
   @Input() public placeholders: string[] = [];
@@ -35,7 +33,7 @@ export class PhraseBuilderSectionComponent implements OnInit {
   constructor(private readonly formBuilder: RxFormBuilder) { }
 
   public ngOnInit(): void {
-    if (this.phraseFormArray.length == 0) {
+    if (this.phraseFormArray?.length == 0) {
       this.addPhrase();
     }
   }

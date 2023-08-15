@@ -1,7 +1,6 @@
 <div class="form-row">
-    <h2>{{ phraseTitle }}</h2>
     <span class="info">
-        <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="info"></mat-icon>
+        <!-- <mat-icon fontIcon="info"></mat-icon> -->
         <p>{{ infoText }}</p>
     </span>
 </div>
@@ -10,7 +9,7 @@
     <div class="form-row" [formGroup]="fg">
         <mat-form-field appearance="outline">
             <mat-label> Phrase {{i+1}} </mat-label>
-            <input type="text" matInput formControlName="phrase">
+            <input type="text" [placeholder]="$any(placeholders | randomElement)" matInput formControlName="phrase">
             <mat-error *ngIf="fg.controls.phrase.errors">
                 {{ fg.controls.phrase.errorMessage }}
             </mat-error>

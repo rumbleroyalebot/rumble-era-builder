@@ -1,0 +1,234 @@
+{
+    "name": "Magical",
+    "type": "official",
+    "colour": 9445631,
+    "icon": "https://cdn.discordapp.com/emojis/1062360475393859715.png",
+    "emoji": "<:m_c:1062360475393859715>",
+    "items": [
+        "wand",
+        "broom",
+        "cauldron",
+        "staff"
+    ],
+    "starter_item": ["wand"],
+    "partner_item": "staff",
+    "item_translations": {
+        "staff": "elemental staff"
+    },
+    "skins": {
+        "wand": {
+            "normal": "<:m_w:1062351148146757732>",
+            "enchanted": "<:e_w:1062360103812083712>"
+        },
+        "broom": {
+            "normal": "<:m_b:1062360480070516796>",
+            "enchanted": "<:e_br:1062360278890729552>"
+        },
+        "cauldron": {
+            "normal": "<:m_c:1062360475393859715>",
+            "enchanted": "<:e_c:1062360106622275674>"
+        },
+        "staff": {
+            "normal": "<:m_s:1062351252165505025>",
+            "enchanted": "<:e_s:1062360100368556085>"
+        }
+    },
+    "events": {
+        "mass_kill": {
+            "available": [
+                "storm",
+                "meteor",
+                "earthquake",
+                "aliens"
+            ],
+            "phrases": {
+                "storm": [
+                    "The players have angered the witches in the arena.\nThey came together and summoned a devastating storm."
+                ],
+                "aliens": [
+                    "The aliens were fascinated by human magic and wanted to learn it themselves."
+                ],
+                "meteor": [
+                    "In an innocent attempt to start a small campfire on a very cold night, a rookie wizard started a meteor shower instead."
+                ],
+                "earthquake": [
+                    "A beginner mages were assesing how powerful the element staff they found was.\nThey ended up starting an earthquake."
+                ]
+            }
+        },
+        "mass_revive": {
+            "available": [
+                "resurrection",
+                "divine"
+            ],
+            "phrases": {
+                "resurrection": [
+                    "A necromancer needed to train their reanimation skills.",
+                    "Someone found an ancient scroll in the arena.\nAfter reading the forgotten language, dead players started to appear."
+                ]
+            }
+        }
+    },
+    "phrases": {
+        "loading": [
+            "Brewing potions",
+            "Dusting old books",
+            "Discovering new spells",
+            "Drawing runes",
+            "Polishing wands",
+            "Locking away forbidden scrolls"
+        ],
+        "default": {
+            "kill": {
+                "0": "{p1} killed {p2} for {p2_3} broomstick. Don't they know vacuums are faster?",
+                "1": "{p1} tried to levitate {p2}\u2019s hat off. Unfortunately, {p2}\u2019s head came off too.",
+                "2": "{p1} Was practicing the Aurphyro spell on {p2}. It did not end well for {p2_2}. Anyone for BBQ?",
+                "3": "{p1} finally mastered the shrinking spell, {p1_3} test subject {p2} didn\u2019t stand a chance when the cat spotted {p2_2}.",
+                "4": "{p1} tricked {p2} into drinking a badly made infatuation potion. You could say that {p1_1} loved {p2_2} to death..",
+                "5": "{p1} and {p2} thought it would be fun to tease the bewitching spider. It didn\u2019t fare well for {p2}."
+            },
+            "death": {
+                "0": "{p1} finally managed to cast a vanishing spell. On themselves. Bye!",
+                "1": "{p1} conjured a troll that proceeded to eat {p1_2}.",
+                "2": "{p1} tripped and fell on {p1_3} unicorn.",
+                "3": "{p1} tried to teleport but got spliced in half.",
+                "4": "{p1} accidently pronounced the spell Implodio incorrectly.",
+                "5": "{p1} didn\u2019t cast {p1_3} underwater breathing spell for long enough.",
+                "6": "{p1} flew the wrong way into a flock of geese and fell off {p1_3} broomstick."
+            },
+            "life": {
+                "0": "{p1} froze the lake and went skating.",
+                "1": "{p1} decided it's probably time to go to charms class.",
+                "2": "{p1} crafted some magical rings to sell.",
+                "3": "{p1} popped off to the shop to buy owl pellets.",
+                "4": "{p1} got a shiny new robe.",
+                "5": "{p1} cast the spell, Yuminio and conjured some birthday cake.",
+                "6": "{p1} had to give {p1_3} cauldron a good scrub.",
+                "7": "{p1} had to go to {p1_3} detention.",
+                "8": "{p1} trod on a toad. Careful!",
+                "9": "{p1} accidently dyed everyone's robes pink."
+            },
+            "revive": {
+                "0": "Thanks to {p1_3} amulet of life, {p1} was instantly bought back to life!",
+                "1": "{p1}\u2019s owl managed to fly them to the hospital, just in time.",
+                "2": "{p1} successfully turned back time to just before {p1_1} died.",
+                "3": "{p1} was revived by a strange but serene white spirit.",
+                "4": "{p1} landed in the fountain of youth as {p1_1} fell. Well that was very, very lucky!"
+            },
+            "wand": {
+                "0": "{p1}\u2019s {item} snapped in half, so {p1_1} stabbed {p2} with the spikey end.",
+                "1": "{p1} used {p1_3} {item} to enchant a pile of rocks to drop onto {p2}, killing {p2_2} instantly.",
+                "2": "{p1} grabbed {p1_3} {item} and cast Oblitero on {p2}. Pro wand skills!",
+                "3": "{p1} used {p1_3} {item} to expertly duel {p2}. {p1} Won.",
+                "4": "{p1} kindly offered {p1_3} {item} to {p2}. It was set to self-destruct."
+            },
+            "cauldron": {
+                "0": "{p1} brewed up a storm in {p1_3} {item}. It whipped up a tornado that flung {p2} like a ragdoll.",
+                "1": "{p1} threw {p1_3} {item} in desperation at {p2}. It hit {p2_2} in the head. Knockout.",
+                "2": "{p1} used {p1_3} {item} to make a nice bath bomb for {p2}. It exploded before {p2_1} even turned the taps off.",
+                "3": "{p1} used dragonfly wings instead of butterfly wings in {p1_3} homebrew and accidently poisoned {p2}.",
+                "4": "{p1} used {p1_3} {item} to create the ultimate joker potion for {p2}. {p2_1} laughed to death."
+            },
+            "broom": {
+                "0": "{p1} hopped onto {p1_3} {item}, grabbed {p2} by the scruff of the neck, flew to 50ft and let go.",
+                "1": "{p1} left {p1_3} {item} propped up by the wall. {p2} tripped over it and fell headfirst into the stones. Goodnight.",
+                "2": "{p1} revved up {p1_3} {item} and flew full speed at {p2}. The {item} went clean through {p2}\u2019s chest.",
+                "3": "{p1} took {p2} for a spin on {p1_3} {item}, sadly, the G force of the loop-de-loop made {p2}\u2019s head explode.",
+                "4": "{p1} whacked {p2} across the head with {p1_3} {item}. Instant death."
+            },
+            "staff": {
+                "0": "{p1} saw red and used {p1_3} {item} to fire blast {p2}… only {p2_3} shoes were left.",
+                "1": "{p1} was feeling blue, so {p1_1} used {p1_3} {item} to send a tsunami {p2}\u2019s way.",
+                "2": "{p1} felt charged so {p1_1} used {p1_3} {item} to summon a thunderstorm over {p2}. Cripsy.",
+                "3": "{p1} used {p1_3} {item} to cause an earthquake. {p2} fell down a crack.",
+                "4": "{p1} used the {item} to freeze {p2} solid. What a pretty ice sculpture."
+            },
+            "get_wand": {
+                "0": "{p1} found an old __{item}__ in a box.",
+                "1": "{p1} bought a __{item}__ from a strange man down a dark alleyway.",
+                "2": "{p1} made a __{item}__ from the bark of an Oak tree and had it blessed by a toad.",
+                "3": "{p1} was gifted a __{item}__ for their birthday.",
+                "4": "{p1} was given a hand-me-down __{item}__."
+            },
+            "get_cauldron": {
+                "0": "{p1} took a __{item}__ from the kitchen.",
+                "1": "{p1}\u2019s owl delivered {p1_2} a __{item}__.",
+                "2": "{p1} bought a solid gold __{item}__. Somebody's doing well.",
+                "3": "{p1} made a __{item}__ out of a rock."
+            },
+            "get_broom": {
+                "0": "{p1} bought a __{item}__ from the number one broom shop in town.",
+                "1": "{p1} was given {p1_3} own __{item}__ for winning a flying trial.",
+                "2": "{p1} made a __{item}__ from a stick and some straw. Imaginative!",
+                "3": "{p1} found a  __{item}__ in the shed.",
+                "4": "{p1} finally saved up enough to buy a __{item}__."
+            },
+            "get_staff": {
+                "0": "{p1} was given an __{item}__ for being top of {p1_3} class.",
+                "1": "{p1} sold {p1_3} soul to a troll for an __{item}__ .",
+                "2": "{p1} was commissioned an __{item}__ by the Magical Secret Service.",
+                "3": "{p1} visited the magical higher realm and returned with a __{item}__."
+            }
+        },
+        "obtainable": {
+            "kill": {
+                "0": "{p1} and {p2} were testing out new potions. Unfortunately, {p2} found a potion of instant death!",
+                "1": "After a lengthy battle of spells, {p1} resorted to turning {p2} into an ant and squishing {p2_2}.",
+                "2": "{p1} shouted a string of nonsense that ended up being a lost spell! It turned {p2}\u2019s insides into outsides. Ew",
+                "3": "{p1} suffocated {p2} with {p1_3} cloak. Not very magical, but it works!",
+                "4": "{p2} was invoking ancient magic when {p1} distracted {p2_2}. {p2} was instantly swallowed by an eldrich being."
+            },
+            "death": {
+                "0": "{p1} attempted to summon the Ancient One. {p1_1} were not powerful enough to control it.",
+                "1": "{p1} was shopping for a new magical pet when {p1_1} got stomped by a pegasus!",
+                "2": "{p1} accidentally walked in between two people duelling.",
+                "3": "{p1} tried casting the black hole spell. It appeared inside {p1_3} head!",
+                "4": "{p1} was used as a dragon\u2019s chewtoy.",
+                "5": "After completing the Trial of Fire, {p1} slipped and died getting {p1_3} medal.",
+                "6": "{p1} thought there was jello on the table. The gelatinous cube got the last laugh!",
+                "7": "{p1} thought {p1_1} could cast the levatate spell while falling but couldn\u2019t remember the words."
+            },
+            "life": {
+                "0": "{p1} practiced summoning magic.",
+                "1": "{p1} turned lead into gold! Fool\u2019s gold that is.",
+                "2": "{p1} bought a powerful potion from the alchemist.",
+                "3": "{p1} cast a spell to turn a fat rat yellow!",
+                "4": "With just a few words, {p1} conjured some lunch.",
+                "5": "{p1} managed to fuse an owl and a cat. Because why not?"
+            },
+            "revive": {
+                "0": "{p1} gained the favor of the Ancient One and was brought back.",
+                "1": "Someone poured unicorn blood into {p1}\u2019s mouth.",
+                "2": "A phoenix cried on {p1}\u2019s wounds!"
+            },
+            "wand": {
+                "0": "{p1} cast knife on {p1_3} {item} and stabbed {p2} repeatedly.",
+                "1": "{p1} cast enlarge on {p1_3} {item} and dropped it on an unsuspecting {p2}!",
+                "2": "With a swish and flick of {p1_3} {item}, {p1} sent {p2} screaming off the edge of a cliff.",
+                "3": "{p1} tapped {p2} on the head with {p1_3} {item}. {p2}\u2019s head imploded!",
+                "4": "{p1} shoved {p1_3} {item} directly into {p2}\u2019s eye!"
+            },
+            "cauldron": {
+                "0": "{p1} was making acid in {p1_3} {item}. As {p2} was walking by, {p1} flung {p2_2} into it!",
+                "1": "{p1}\u2019s {item} exploded while brewing, sending shrapnel flying into {p2}!",
+                "2": "After weeks of intensive brewing with {p1_3} {item}, {p1} made a potent poison. A single drop was enough to finish {p2}.",
+                "3": "{p1} sent {p1_3} {item} rolling down a hill. It just so happened to hit {p2}!",
+                "4": "{p1} put {p1_3} {item} on {p2}\u2019s head and cast the shrinking spell on it, crushing {p2_3} skull."
+            },
+            "broom": {
+                "0": "{p2} tried to used {p1}\u2019s {item} to fly off the castle. Turns out it was just a normal broom.",
+                "1": "{p1} challenged {p2} to a race with {p1_3} {item}. {p2} lost the race, and {p2_3} life!",
+                "2": "{p1}\u2019s {item} became sentient and decided {p2} got too close.",
+                "3": "{p1} used {p1_3} {item} as a conductor, channeling lightning straight at {p2}.",
+                "4": "{p1} tried to enchant a new {item}, but it went out of control and rocketed into {p2}!"
+            },
+            "staff": {
+                "0": "{p1} used the full might of {p1_3} {item} on {p2}, turning them to ash immediately!",
+                "1": "{p1} used {p1_3} {item} to turn {p2} into a new element. Cheese!",
+                "2": "{p1} pulled all of the water out of {p2} using {p1_3} {item}, turning them into jerky.",
+                "3": "{p1} combined fire and water using {p1_3} {item}, and blasted {p2} with steam!",
+                "4": "{p1} forgot how to use {p1_3} {item}, so they beat {p2} with it instead."
+            }
+        }
+    }
+}

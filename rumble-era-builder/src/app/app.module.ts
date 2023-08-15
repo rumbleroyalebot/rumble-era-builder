@@ -1,22 +1,27 @@
+import { MAT_COLOR_FORMATS, NgxMatColorPickerModule } from "@angular-material-components/color-picker";
+import { HttpClientModule } from "@angular/common/http";
 import { NgModule } from "@angular/core";
-import { BrowserModule } from "@angular/platform-browser";
-
-import { ReactiveFormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MatButtonModule } from "@angular/material/button";
-import { MatToolbarModule } from "@angular/material/toolbar";
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldModule } from "@angular/material/form-field";
+import { MatIconModule } from "@angular/material/icon";
 import { MatInputModule } from "@angular/material/input";
+import { MatSlideToggleModule } from "@angular/material/slide-toggle";
+import { MatTableModule } from "@angular/material/table";
+import { MatTabsModule } from "@angular/material/tabs";
+import { MatToolbarModule } from "@angular/material/toolbar";
+import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { RxReactiveFormsModule } from "@rxweb/reactive-form-validators";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
+import { HelpTableComponent } from "./components/help-table/help-table.component";
 import { NavbarComponent } from "./components/navbar/navbar.component";
 import { EraBuilderComponent } from "./containers/era-builder/era-builder.component";
 import { IndexPageComponent } from "./containers/index-page/index-page.component";
 import { MainEraInfoComponent } from "./containers/main-era-info/main-era-info.component";
-import { MAT_COLOR_FORMATS, NGX_MAT_COLOR_FORMATS, NgxMatColorPickerModule } from "@angular-material-components/color-picker";
 import { PhraseBuilderSectionComponent } from "./containers/phrase-builder-section/phrase-builder-section.component";
-import { MatIconModule } from "@angular/material/icon";
+import { RandomElementPipe } from "./pipes/random-element.pipe";
 
 @NgModule({
   declarations: [
@@ -26,15 +31,22 @@ import { MatIconModule } from "@angular/material/icon";
     NavbarComponent,
     MainEraInfoComponent,
     PhraseBuilderSectionComponent,
+    RandomElementPipe,
+    HelpTableComponent
   ],
   imports: [
     AppRoutingModule,
     BrowserAnimationsModule,
     BrowserModule,
+    FormsModule, 
+    HttpClientModule,
     MatButtonModule,
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
+    MatSlideToggleModule,
+    MatTabsModule,
+    MatTableModule,
     MatToolbarModule,
     NgxMatColorPickerModule,
     ReactiveFormsModule,

@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 
 import { MainEraInfoComponent } from "./main-era-info.component";
+import { AppModule } from "src/app/app.module";
 
 describe("MainEraInfoComponent", () => {
   let component: MainEraInfoComponent;
@@ -8,7 +9,8 @@ describe("MainEraInfoComponent", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [MainEraInfoComponent]
+      declarations: [MainEraInfoComponent],
+      imports: [AppModule],
     });
     fixture = TestBed.createComponent(MainEraInfoComponent);
     component = fixture.componentInstance;
