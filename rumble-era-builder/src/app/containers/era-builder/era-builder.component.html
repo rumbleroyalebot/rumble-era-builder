@@ -20,8 +20,8 @@
                             class="tab-icon" fontIcon="warning" />
                     </ng-template>
                     <app-phrase-builder-section
-                        infoText="Loading texts used in the countdown embeds. Three dots (...) will be automatically added after each phrase, do not include them here."
-                        [placeholders]="samplePhrases.loading" [playerCount]="0"
+                        infoText="Loading texts used in the countdown embeds. Three dots (...) will automatically be added after each phrase, do not include them here."
+                        [placeholders]="samples.loading" [playerCount]="0"
                         [phraseFormArray]="loadingPhrasesFormArray" [phraseForm]="era?.loadingPhrases ?? []" />
                 </mat-tab>
 
@@ -31,20 +31,10 @@
                         <mat-icon icon *ngIf="killPhrasesFormArray.touched && killPhrasesFormArray.invalid"
                             class="tab-icon" fontIcon="warning" />
                     </ng-template>
-                    <app-phrase-builder-section infoText="Kill phrases - must include two players ({p1} and {p2})"
-                        [placeholders]="samplePhrases.kill" [playerCount]="2" [phraseFormArray]="killPhrasesFormArray"
+                    <app-phrase-builder-section
+                        infoText="Phrases describing one player killing another. Must include two players - {p1} and {p2}. {p1} is the attacker and {p2} gets killed."
+                        [placeholders]="samples.kill" [playerCount]="2" [phraseFormArray]="killPhrasesFormArray"
                         [phraseForm]="era?.killPhrases ?? []" />
-                </mat-tab>
-
-                <mat-tab>
-                    <ng-template mat-tab-label>
-                        Revive phrases
-                        <mat-icon icon *ngIf="revivePhrasesFormArray.touched && revivePhrasesFormArray.invalid"
-                            class="tab-icon" fontIcon="warning" />
-                    </ng-template>
-                    <app-phrase-builder-section infoText="Revive phrases - must include one player ({p1})"
-                        [placeholders]="samplePhrases.revive" [playerCount]="1"
-                        [phraseFormArray]="revivePhrasesFormArray" [phraseForm]="era?.revivePhrases ?? []" />
                 </mat-tab>
 
                 <mat-tab>
@@ -53,28 +43,95 @@
                         <mat-icon icon *ngIf="deathPhrasesFormArray.touched && deathPhrasesFormArray.invalid"
                             class="tab-icon" fontIcon="warning" />
                     </ng-template>
-                    <app-phrase-builder-section infoText="Death phrases - must include one player ({p1})"
-                        [placeholders]="samplePhrases.death" [playerCount]="1" [phraseFormArray]="deathPhrasesFormArray"
+                    <app-phrase-builder-section
+                        infoText="Phrases for when a player dies, either due to their own actions or external factors, but not caused by other players. Must include exactly one player - {p1}."
+                        [placeholders]="samples.death" [playerCount]="1" [phraseFormArray]="deathPhrasesFormArray"
                         [phraseForm]="era?.deathPhrases ?? []" />
                 </mat-tab>
+
+                <mat-tab>
+                    <ng-template mat-tab-label>
+                        Revive phrases
+                        <mat-icon icon *ngIf="revivePhrasesFormArray.touched && revivePhrasesFormArray.invalid"
+                            class="tab-icon" fontIcon="warning" />
+                    </ng-template>
+                    <app-phrase-builder-section
+                        infoText="Phrases describing a player being revived. Must include exactly one player - {p1}."
+                        [placeholders]="samples.revive" [playerCount]="1"
+                        [phraseFormArray]="revivePhrasesFormArray" [phraseForm]="era?.revivePhrases ?? []" />
+                </mat-tab>
+
+                <mat-tab>
+                    <ng-template mat-tab-label>
+                        Life phrases
+                        <mat-icon icon *ngIf="lifePhrasesFormArray.touched && lifePhrasesFormArray.invalid"
+                            class="tab-icon" fontIcon="warning" />
+                    </ng-template>
+                    <app-phrase-builder-section
+                        infoText="Narrative phrases - actions occurring to or being performed by a single player. These are non-gameplay events. Must include exactly one player - {p1}."
+                        [placeholders]="samples.life" [playerCount]="1" [phraseFormArray]="lifePhrasesFormArray"
+                        [phraseForm]="era?.lifePhrases ?? []" />
+                </mat-tab>
+            </mat-tab-group>
+        </div>
+
+        <div>
+            <h1 class="title">Item Phrases</h1>
+
+            <div class="form-row item-add">
+                <mat-form-field appearance="outline">
+                    <mat-label>Item Name</mat-label>
+                    <input [placeholder]="$any(samples.items | randomElement) | titlecase" type="text" matInput [(ngModel)]="newItemName"
+                        [ngModelOptions]="{standalone: true}">
+                </mat-form-field>
+                <button type="button" mat-raised-button color="primary" (click)="addItem()">Add Item</button>
+            </div>
+
+            <div *ngIf="itemFormArray.length === 0" class="mg-bottom border">No items added. Use the button above.</div>
+
+            <mat-tab-group *ngIf="itemFormArray.length !== 0" class="mg-bottom border">
+
+                <mat-tab *ngFor="let fg of itemFormArray.controls; let index = index">
+                    <ng-template mat-tab-label>
+                        {{ $any(fg).value.name | titlecase }}
+                        <mat-icon icon *ngIf="revivePhrasesFormArray.touched && revivePhrasesFormArray.invalid"
+                            class="tab-icon" fontIcon="warning" />
+                    </ng-template>
+
+                    <app-item-builder-section [formGroup]="$any(fg)" [id]="index" (removeItem)="removeItem($event)"
+                        [killPhraseForm]="era?.items?.[index]?.killPhrases ?? []"
+                        [obtainPhraseForm]="era?.items?.[index]?.obtainPhrases ?? []"
+                        [placeholder]="$any(samples.items | randomElement) | titlecase" />
+                </mat-tab>
+
             </mat-tab-group>
         </div>
 
     </form>
 
+    <div class="form-row buttons">
+        <button type="button" mat-raised-button color="primary" (click)="downloadEra()">Download Era File</button>
 
-    <div class="form-row">
-        <button type="button" mat-raised-button color="accent" (click)="buildEra()">Build</button>
+        <input type="file" accept="application/JSON" (change)="onFileChange($event)" #file hidden>
+        <button type="button" mat-raised-button color="primary" (click)="file.click()">Upload Era File</button>
     </div>
 
-    <h2>Ouput:</h2>
-    <div class="form-row">
-        <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="5" class="output" style="resize: none;" #JSONOutput
-            [value]="eraJson"></textarea>
-    </div>
+    <mat-slide-toggle class="slider preview-slider" [(ngModel)]="showPreview">Toggle preview</mat-slide-toggle>
+    <ng-container *ngIf="showPreview">
+        <h1>Preview</h1>
 
-    <div class="form-row">
-        <button type="button" mat-raised-button color="accent" (click)="loadEra(JSONOutput.value)">Load</button>
-    </div>
+        <div class="form-row buttons">
+            <button type="button" mat-raised-button color="accent" (click)="buildEra()">
+                Build Preview
+            </button>
+            <button type="button" mat-raised-button color="accent" (click)="loadEra(JSONOutput.value)">
+                Load From Preview
+            </button>
+        </div>
+        <div class="form-row">
+            <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="5" class="output" style="resize: none;"
+                #JSONOutput [value]="eraJson"></textarea>
+        </div>
+    </ng-container>
 
 </div>

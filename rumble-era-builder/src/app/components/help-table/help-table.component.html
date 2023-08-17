@@ -5,33 +5,38 @@
         <mat-table class="table" [dataSource]="data">
 
             <ng-container matColumnDef="p1">
-                <mat-header-cell *matHeaderCellDef>p1</mat-header-cell>
-                <mat-cell *matCellDef="let element">{{ element.p1 }}</mat-cell>
+                <mat-header-cell *matHeaderCellDef>&#123;p1&#125;</mat-header-cell>
+                <mat-cell *matCellDef="let element"><em>{{ element.p1 }}</em></mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="p1_1">
-                <mat-header-cell *matHeaderCellDef>p1_1</mat-header-cell>
+                <mat-header-cell *matHeaderCellDef>&#123;p1_1&#125;</mat-header-cell>
                 <mat-cell *matCellDef="let element">{{ element.p1_1 }}</mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="p1_1+">
-                <mat-header-cell *matHeaderCellDef>p1_1+</mat-header-cell>
+                <mat-header-cell *matHeaderCellDef>&#123;p1_1+&#125;</mat-header-cell>
                 <mat-cell *matCellDef="let element">{{ element.p1_1plus }}</mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="p1_2">
-                <mat-header-cell *matHeaderCellDef>p1_2</mat-header-cell>
+                <mat-header-cell *matHeaderCellDef>&#123;p1_2&#125;</mat-header-cell>
                 <mat-cell *matCellDef="let element">{{ element.p1_2 }}</mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="p1_3">
-                <mat-header-cell *matHeaderCellDef>p1_3</mat-header-cell>
+                <mat-header-cell *matHeaderCellDef>&#123;p1_3&#125;</mat-header-cell>
                 <mat-cell *matCellDef="let element">{{ element.p1_3 }}</mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="p1_w">
-                <mat-header-cell *matHeaderCellDef>p1_w</mat-header-cell>
+                <mat-header-cell *matHeaderCellDef>&#123;p1_w&#125;</mat-header-cell>
                 <mat-cell *matCellDef="let element">{{ element.p1_w }}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="item">
+                <mat-header-cell *matHeaderCellDef>&#123;item&#125;</mat-header-cell>
+                <mat-cell *matCellDef="let element"><em>{{ element.item }}</em></mat-cell>
             </ng-container>
 
             <mat-header-row *matHeaderRowDef="columns"></mat-header-row>

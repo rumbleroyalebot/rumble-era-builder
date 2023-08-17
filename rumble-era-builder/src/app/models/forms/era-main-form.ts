@@ -1,5 +1,6 @@
 import { Color } from "@angular-material-components/color-picker";
 import { alphaNumeric, maxLength, pattern, prop, propArray, required, trim } from "@rxweb/reactive-form-validators";
+import { ItemForm } from "./item-form";
 import { PhraseForm } from "./phrase-form";
 
 export class EraMainForm {
@@ -35,4 +36,10 @@ export class EraMainForm {
 
     @propArray()
     public deathPhrases: PhraseForm[] = [];
+
+    @propArray()
+    public lifePhrases: PhraseForm[] = [];
+
+    @propArray()
+    public items: ItemForm[] = [];
 }

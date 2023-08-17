@@ -9,11 +9,14 @@ import { PhraseForm } from "src/app/models/forms/phrase-form";
   styleUrls: ["./phrase-builder-section.component.less"]
 })
 export class PhraseBuilderSectionComponent implements OnInit {
+  @Input() public heading: string;
   @Input() public infoText = "";
 
   @Input() public placeholders: string[] = [];
 
   @Input() public playerCount: 0 | 1 | 2 = 0;
+
+  @Input() public hasItem = false;
 
   @Input({ required: true }) public phraseFormArray: RxFormArray;
 
@@ -21,7 +24,7 @@ export class PhraseBuilderSectionComponent implements OnInit {
     this.phraseFormArray.clear();
     this.formGroups = [];
 
-    phraseForm.forEach(value => {
+    (phraseForm ?? []).forEach(value => {
       const fg = this.formBuilder.formGroup(value);
       this.phraseFormArray.push(fg);
       this.formGroups.push(fg as unknown as IFormGroup<PhraseForm>)
@@ -30,11 +33,13 @@ export class PhraseBuilderSectionComponent implements OnInit {
 
   public formGroups: IFormGroup<PhraseForm>[] = [];
 
-  constructor(private readonly formBuilder: RxFormBuilder) { }
+  constructor(
+    private readonly formBuilder: RxFormBuilder
+  ) { }
 
   public ngOnInit(): void {
     if (this.phraseFormArray?.length == 0) {
-      this.addPhrase();
+      setTimeout(() => this.addPhrase());
     }
   }
 
@@ -44,7 +49,7 @@ export class PhraseBuilderSectionComponent implements OnInit {
     this.phraseFormArray.push(fg);
     this.formGroups.push(fg);
 
-    fg.controls.phrase.addValidators(this.playerPatternValidator);
+    fg.controls.phrase.addValidators(this.requiredPatternValidator);
   }
 
   public removePhrase() {
@@ -52,17 +57,23 @@ export class PhraseBuilderSectionComponent implements OnInit {
     this.formGroups.pop();
   }
 
-  private playerPatternValidator = (control: AbstractControl<string>) => {
+  private requiredPatternValidator = (control: AbstractControl<string>) => {
     let includesPattern = true;
     let error = "";
     if (this.playerCount == 1) {
       includesPattern = control.value.includes("{p1}") ?? false;
-      error = "Phrase must include exactly one player. ({p1} pattern)";
+      error = "Phrase must include exactly one player. ({p1} pattern) ";
     }
     else if (this.playerCount == 2) {
       includesPattern = (control.value?.includes("{p1}") ?? false) && control.value.includes("{p2}");
-      error = "Phrase must include exactly two players. ({p1} and {p2} patterns)";
+      error = "Phrase must include exactly two players. ({p1} and {p2} patterns) ";
     }
-    return !includesPattern ? { "includesPlayerPatterns": { message: error } } : null;
+
+    if (this.hasItem) {
+      includesPattern = control.value.includes("{item}") ?? false;
+      error += "Phrase must include item name. ({item} pattern)";
+    }
+
+    return !includesPattern ? { "includesRequiredPatterns": { message: error } } : null;
   };
 }

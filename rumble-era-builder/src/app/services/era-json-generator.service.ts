@@ -4,6 +4,7 @@ import { Color } from "@angular-material-components/color-picker";
 import { PhraseForm } from "../models/forms/phrase-form";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
+import { ItemForm } from "../models/forms/item-form";
 
 type JSONValue = string | number | boolean | null | JSONObject | JSONArray;
 type JSONObject = { [key: string]: JSONValue };
@@ -15,28 +16,43 @@ type JSONArray = JSONValue[];
 })
 export class EraJsonGeneratorService {
 
-  constructor(private readonly httpClient: HttpClient) {}
+  constructor(private readonly httpClient: HttpClient) { }
 
   public generateEraJSON(era: EraMainForm): JSONObject {
+    const items = era.items.map(x => x.name);
+    const skins = era.items.map(x => ({ [x.name]: { normal: x.emoji } }));
+
     const json: JSONObject = {
       name: era.name,
       type: "custom",
       colour: parseInt(era.colour?.toHex(), 16) ?? 0,
       icon: era.icon,
       emoji: era.emoji,
+      starter_item: items,
+      items: items,
+      skins: skins,
       phrases: {
         loading: this.phraseFormsToJSONArray(era.loadingPhrases),
         default: {
           kill: this.phraseFormsToJSON(era.killPhrases),
           revive: this.phraseFormsToJSON(era.revivePhrases),
           death: this.phraseFormsToJSON(era.deathPhrases),
+          life: this.phraseFormsToJSON(era.lifePhrases),
         }
       }
     };
+
+    era.items.forEach(item => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (json as any).phrases.default[item.name] = this.phraseFormsToJSON(item.killPhrases);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (json as any).phrases.default["get_" + item.name] = this.phraseFormsToJSON(item.obtainPhrases);
+    });
+
     return json;
   }
 
-  public parseJSON(json: string): EraMainForm {
+  public parseJSON(json: string): EraMainForm | null {
     try {
       const parsed = JSON.parse(json);
       const era = new EraMainForm();
@@ -48,9 +64,25 @@ export class EraJsonGeneratorService {
       era.killPhrases = this.JSONtoPhraseForms(parsed.phrases.default.kill);
       era.revivePhrases = this.JSONtoPhraseForms(parsed.phrases.default.revive);
       era.deathPhrases = this.JSONtoPhraseForms(parsed.phrases.default.death);
+      era.lifePhrases = this.JSONtoPhraseForms(parsed.phrases.default.life);
+      era.items = [];
+
+      const items = parsed.items;
+      const skins = parsed.skins;
+
+      items.forEach((itemName: string) => {
+        const item = new ItemForm();
+        item.name = itemName;
+        item.emoji = skins[itemName].normal;
+        item.killPhrases = this.JSONtoPhraseForms(parsed.phrases.default[itemName]);
+        item.obtainPhrases = this.JSONtoPhraseForms(parsed.phrases.default["get_" + itemName]);
+
+        era.items.push(item);
+      });
+
       return era;
     } catch (e) {
-      return new EraMainForm();
+      return null;
     }
   }
 
@@ -72,7 +104,7 @@ export class EraJsonGeneratorService {
   private phraseFormsToJSON(phrases: PhraseForm[]): JSONObject {
     const object: JSONObject = {};
 
-    phrases.map(p => p.phrase).forEach((phrase, i) => object[i.toString()] = phrase);
+    phrases.map(p => p.phrase).forEach((phrase, i) => object[i.toString()] = phrase.replace("'", "\u2019"));
 
     return object;
 
