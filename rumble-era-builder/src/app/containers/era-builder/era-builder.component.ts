@@ -109,6 +109,7 @@ export class EraBuilderComponent implements OnInit, ComponentCanDeactivate {
     const era = this.formGroup.value;
     if (this.formGroup.valid) {
       this.eraJson = JSON.stringify(this.jsonService.generateEraJSON(era), null, 2);
+      this.openSnackBar("Era generated.")
     } else {
       this.openSnackBar("Fix all errors to generate custom era.")
       this.eraJson = "Fix all errors to generate custom era." //this.getErrorMessages();
@@ -125,6 +126,7 @@ export class EraBuilderComponent implements OnInit, ComponentCanDeactivate {
     }
     this.era.items.forEach(form => this.itemFormArray.push(this.formBuilder.formGroup(form)))
     this.formGroup.patchModelValue(this.era);
+    this.openSnackBar("Era loaded.");
   }
 
   public addItem() {
@@ -152,7 +154,6 @@ export class EraBuilderComponent implements OnInit, ComponentCanDeactivate {
       reader.onload = (e: ProgressEvent<FileReader>) => {
         const content = e.target?.result as string;
         this.loadEra(content);
-        this.openSnackBar("Era file loaded.");
       };
       reader.readAsText(file);
     }
@@ -170,7 +171,7 @@ export class EraBuilderComponent implements OnInit, ComponentCanDeactivate {
     const json = this.jsonService.generateEraJSON(era)
     this.eraJson = JSON.stringify(json, null, 2);
 
-    const fileName = era.name + ".json";
+    const fileName = era.name.toLowerCase().replace(" ", "_") + ".json";
     const blob = new Blob([JSON.stringify(json)], { type: "application/json" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");

@@ -20,7 +20,9 @@ export class EraJsonGeneratorService {
 
   public generateEraJSON(era: EraMainForm): JSONObject {
     const items = era.items.map(x => x.name);
-    const skins = era.items.map(x => ({ [x.name]: { normal: x.emoji } }));
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const skins = {} as any;
+    era.items.forEach(item => (skins[item.name] = { normal: item.emoji } ));
 
     const json: JSONObject = {
       name: era.name,
@@ -82,6 +84,7 @@ export class EraJsonGeneratorService {
 
       return era;
     } catch (e) {
+      console.log(e);
       return null;
     }
   }
