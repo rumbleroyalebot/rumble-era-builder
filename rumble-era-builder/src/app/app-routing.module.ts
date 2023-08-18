@@ -5,8 +5,8 @@ import { PendingChangesGuard } from "./guards/pending-changes.guard";
 
 const routes: Routes = [
   // { path: "", component: IndexPageComponent },
-  { path: "", redirectTo: "builder", pathMatch: "full" },
-  { path: "builder", component: EraBuilderComponent, canDeactivate: [PendingChangesGuard] }
+  { path: "builder", redirectTo: "", pathMatch: "full" },
+  { path: "", component: EraBuilderComponent, canDeactivate: [PendingChangesGuard] }
 ];
 
 @NgModule({
