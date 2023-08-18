@@ -21,3 +21,30 @@ body {
 .mdc-button__label, .darkmodeContainer {
     display: flex;
 }
+
+// Dark mode rules
+
+.dark-mode {
+    background-color: #121212;
+    color: #FFFFFF;
+
+    .content {
+      .border, .table {
+        border: 1pt solid gray;
+      }
+  
+      .mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-text-field__input {
+        color: white;
+      }
+  
+      input, textarea {
+        &::placeholder {
+          color: #cfcfcf !important;
+        }
+      }
+      .mat-form-field-outline {
+        color: #cfcfcf !important;
+        border-color: #cfcfcf !important;
+      }
+    }
+}
