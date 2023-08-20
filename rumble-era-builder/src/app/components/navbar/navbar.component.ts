@@ -17,10 +17,10 @@ export class NavbarComponent {
     const body = document.body;
 
     if (this.isPinkBlueGrey) {
-      linkElement.href = "../../../assets/pink-bluegrey.css";
+      linkElement.href = "assets/pink-bluegrey.css";
       this.renderer.addClass(body, "dark-mode");
     } else {
-      linkElement.href = "../../../assets/indigo-pink.css";
+      linkElement.href = "assets/indigo-pink.css";
       this.renderer.removeClass(body, "dark-mode");
     }
   }  
