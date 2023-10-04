@@ -10,8 +10,8 @@ export class ItemForm {
     public name = "";
 
     @required({ message: "Item emoji is required." })
-    @pattern({ expression: { discordEmoji: /^<(?:a)?:[a-zA-Z0-9_-]{1,30}:[0-9]{1,20}>$/ }, message: "Invalid Discord emoji format. Must be either <:name:id> or <a:name:id>." })
-    public emoji: string;
+    @pattern({ expression: { discordEmoji: /^<(?:a)?:[a-zA-Z0-9_-]{1,30}:[0-9]{1,20}>$|^(\p{Emoji}\p{Emoji_Modifier}?|\p{Emoji_Presentation}|\p{Emoji_Modifier_Base}\p{Emoji_Modifier})$/u }, message: "Invalid format. Must be either <:name:id>, <a:name:id>, or a Unicode emoji." })
+    public emoji: string;    
 
     @propArray()
     public obtainPhrases: PhraseForm[] = [];
