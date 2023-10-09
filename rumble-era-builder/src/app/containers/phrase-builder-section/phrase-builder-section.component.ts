@@ -61,16 +61,16 @@ export class PhraseBuilderSectionComponent implements OnInit {
     let includesPattern = true;
     let error = "";
     if (this.playerCount == 1) {
-      includesPattern = control.value.includes("{p1}") ?? false;
-      error = "Phrase must include exactly one player. ({p1} pattern) ";
+      includesPattern &&= control.value.includes("{p1}");
+      error += "Phrase must include exactly one player. ({p1} pattern) ";
     }
     else if (this.playerCount == 2) {
-      includesPattern = (control.value?.includes("{p1}") ?? false) && control.value.includes("{p2}");
-      error = "Phrase must include exactly two players. ({p1} and {p2} patterns) ";
+      includesPattern &&= control.value.includes("{p1}") && control.value.includes("{p2}");
+      error += "Phrase must include exactly two players. ({p1} and {p2} patterns) ";
     }
 
     if (this.hasItem) {
-      includesPattern = control.value.includes("{item}") ?? false;
+      includesPattern &&= control.value.includes("{item}");
       error += "Phrase must include item name. ({item} pattern)";
     }
 
