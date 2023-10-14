@@ -107,6 +107,11 @@ export class EraBuilderComponent implements OnInit, ComponentCanDeactivate {
   public buildEra() {
     this.formGroup.markAllAsTouched();
     const era = this.formGroup.value;
+    if (!this.era?.items || this.era.items.length === 0) {
+      this.openSnackBar("Era must have at least one item!");
+      this.eraJson = "Era must have at least one item!"
+      return;
+    }
     if (this.formGroup.valid) {
       this.eraJson = JSON.stringify(this.jsonService.generateEraJSON(era), null, 2);
       this.openSnackBar("Era generated.")
@@ -162,6 +167,11 @@ export class EraBuilderComponent implements OnInit, ComponentCanDeactivate {
   public downloadEra() {
     this.formGroup.markAllAsTouched();
     const era = this.formGroup.value;
+    if (!this.era?.items || this.era.items.length === 0) {
+      this.openSnackBar("Era must have at least one item!");
+      this.eraJson = "Era must have at least one item!"
+      return;
+    }
     if (!this.formGroup.valid) {
       this.openSnackBar("Fix all errors to generate custom era.");
       this.eraJson = "Fix all errors to generate custom era." //this.getErrorMessages();

@@ -25,7 +25,7 @@
     "@angular/router": "^16.2.0",
     "@ngneat/until-destroy": "^10.0.0",
     "@rxweb/reactive-form-validators": "^13.0.1",
-    "rxjs": "~7.8.0",
+    "rxjs": "^7.5.2",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.0"
   },
