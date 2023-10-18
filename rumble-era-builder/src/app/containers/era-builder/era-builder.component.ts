@@ -107,7 +107,7 @@ export class EraBuilderComponent implements OnInit, ComponentCanDeactivate {
   public buildEra() {
     this.formGroup.markAllAsTouched();
     const era = this.formGroup.value;
-    if (!this.era?.items || this.era.items.length === 0) {
+    if (this.itemFormArray?.length < 1) {
       this.openSnackBar("Era must have at least one item!");
       this.eraJson = "Era must have at least one item!"
       return;
@@ -167,7 +167,7 @@ export class EraBuilderComponent implements OnInit, ComponentCanDeactivate {
   public downloadEra() {
     this.formGroup.markAllAsTouched();
     const era = this.formGroup.value;
-    if (!this.era?.items || this.era.items.length === 0) {
+    if (this.itemFormArray?.length < 1) {
       this.openSnackBar("Era must have at least one item!");
       this.eraJson = "Era must have at least one item!"
       return;
