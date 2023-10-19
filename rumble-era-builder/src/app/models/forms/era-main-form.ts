@@ -7,7 +7,7 @@ export class EraMainForm {
     @prop()
     @trim()
     @required({ message: "Era name is required." })
-    @alphaNumeric({ message: "Era name cannot contain any special characters." })
+    @alphaNumeric({ allowWhiteSpace: true, message: "Era name cannot contain any special characters." })
     @maxLength({ value: 30, message: "Era name must be shorter than 30 characters." })
     public name = "";
 
