@@ -17,6 +17,7 @@ export class PhraseBuilderSectionComponent implements OnInit {
   @Input() public playerCount: 0 | 1 | 2 = 0;
 
   @Input() public hasItem = false;
+  @Input() public hasItemUnlock = false;
 
   @Input({ required: true }) public phraseFormArray: RxFormArray;
 
@@ -61,17 +62,34 @@ export class PhraseBuilderSectionComponent implements OnInit {
     let includesPattern = true;
     let error = "";
     if (this.playerCount == 1) {
-      includesPattern &&= control.value.includes("{p1}");
-      error += "Phrase must include exactly one player. ({p1} pattern) ";
+      const condition = control.value.includes("{p1}");
+      includesPattern &&= condition;
+      if (!condition) {
+        error += "Phrase must include exactly one player ({p1}). ";
+      }
     }
     else if (this.playerCount == 2) {
-      includesPattern &&= control.value.includes("{p1}") && control.value.includes("{p2}");
-      error += "Phrase must include exactly two players. ({p1} and {p2} patterns) ";
+      const condition = control.value.includes("{p1}") && control.value.includes("{p2}");
+      includesPattern &&= condition;
+      if (!condition) {
+        error += "Phrase must include exactly two players ({p1} and {p2}). ";
+      }
     }
 
     if (this.hasItem) {
-      includesPattern &&= control.value.includes("{item}");
-      error += "Phrase must include item name. ({item} pattern)";
+      const condition = control.value.includes("{item}")
+      includesPattern &&= condition;
+      if (!condition) {
+        error += "Phrase must include item name. ({item} pattern) ";
+      }
+    }
+
+    if (this.hasItemUnlock) {
+      const condition = control.value.includes("__{item}__")
+      includesPattern &&= condition;
+      if (!condition) {
+        error += "Unlock phrases must include item name surrounded by double underscores. (__{item}__) ";
+      }
     }
 
     return !includesPattern ? { "includesRequiredPatterns": { message: error } } : null;

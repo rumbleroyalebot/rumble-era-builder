@@ -6,6 +6,7 @@ export class ItemForm {
     @trim()
     @required({ message: "Item name is required." })
     @alphaNumeric({ allowWhiteSpace: true, message: "Item name cannot contain any special characters." })
+    @pattern({ expression: { noSpaces: /^[^\s]+(\s+[^\s]+)*$/ }, message: "Item name cannot contain spaces at the start or the end." })
     @maxLength({ value: 30, message: "Item name must be shorter than 30 characters." })
     public name = "";
 

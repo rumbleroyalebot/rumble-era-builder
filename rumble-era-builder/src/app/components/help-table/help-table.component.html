@@ -3,12 +3,6 @@
 
     <div class="floating-help" *ngIf="showTable">
         <mat-table class="table" [dataSource]="data">
-
-            <ng-container matColumnDef="p1">
-                <mat-header-cell *matHeaderCellDef>&#123;p1&#125;</mat-header-cell>
-                <mat-cell *matCellDef="let element"><em>{{ element.p1 }}</em></mat-cell>
-            </ng-container>
-
             <ng-container matColumnDef="p1_1">
                 <mat-header-cell *matHeaderCellDef>&#123;p1_1&#125;</mat-header-cell>
                 <mat-cell *matCellDef="let element">{{ element.p1_1 }}</mat-cell>
@@ -34,13 +28,17 @@
                 <mat-cell *matCellDef="let element">{{ element.p1_w }}</mat-cell>
             </ng-container>
 
-            <ng-container matColumnDef="item">
-                <mat-header-cell *matHeaderCellDef>&#123;item&#125;</mat-header-cell>
-                <mat-cell *matCellDef="let element"><em>{{ element.item }}</em></mat-cell>
-            </ng-container>
+            <ng-container matColumnDef="mergedFooter">
+                <mat-footer-cell *matFooterCellDef colspan="7">
+                    Plus can be used in all patterns. <br>
+                    &#123;p1&#125; will be replaced with player name. <br>
+                    &#123;item&#125; will be replaced with item name. <br>
+                </mat-footer-cell>
+              </ng-container>
 
             <mat-header-row *matHeaderRowDef="columns"></mat-header-row>
             <mat-row *matRowDef="let row; columns: columns;"></mat-row>
+            <mat-footer-row *matFooterRowDef="['mergedFooter']"></mat-footer-row>
         </mat-table>
     </div>
 </div>

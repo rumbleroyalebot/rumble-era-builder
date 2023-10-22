@@ -18,7 +18,7 @@
         <mat-form-field appearance="outline">
             <mat-label>Emoji</mat-label>
             <input placeholder="&lt;:leghorse:123456789&gt;" type="url" matInput formControlName="emoji">
-            <mat-hint>Provide emoji for this item. Use the Discord format of &lt;:name:id&gt;.</mat-hint>
+            <mat-hint>Provide emoji for this item. Use the Discord format of &lt;:name:id&gt;.<br>RR bot must be in the server where the emoji is uploaded.</mat-hint>
             <mat-error *ngIf="formGroup.controls.emoji.errors">
                 {{ formGroup.controls.emoji.errorMessage }}
             </mat-error>
@@ -35,7 +35,7 @@
             </ng-template>
             <app-phrase-builder-section
                 infoText="Phrases for when a player acquires this item. The phrases should include one player and the item name - {p1} and __{item}__. Double underscores highlight the item name."
-                [playerCount]="1" [hasItem]="true" [phraseFormArray]="$any(formGroup.controls.obtainPhrases)"
+                [playerCount]="1" [hasItemUnlock]="true" [phraseFormArray]="$any(formGroup.controls.obtainPhrases)"
                 [phraseForm]="obtainPhraseForm" />
         </mat-tab>
 

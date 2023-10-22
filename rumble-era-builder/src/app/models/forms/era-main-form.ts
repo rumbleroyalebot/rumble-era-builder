@@ -8,6 +8,7 @@ export class EraMainForm {
     @trim()
     @required({ message: "Era name is required." })
     @alphaNumeric({ allowWhiteSpace: true, message: "Era name cannot contain any special characters." })
+    @pattern({ expression: { noSpaces: /^[^\s]+(\s+[^\s]+)*$/ }, message: "Era name cannot contain spaces at the start or the end." })
     @maxLength({ value: 30, message: "Era name must be shorter than 30 characters." })
     public name = "";
 

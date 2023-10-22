@@ -38,7 +38,7 @@
         <mat-form-field appearance="outline">
             <mat-label>Emoji</mat-label>
             <input placeholder="&lt;:leghorse:123456789&gt;" type="url" matInput formControlName="emoji">
-            <mat-hint>Provide the era emoji, which should visually resemble the icon above. Use the Discord format of &lt;:name:id&gt;.</mat-hint>
+            <mat-hint>Era emoji. Use the Discord format of &lt;:name:id&gt;.<br>RR bot must be in the server where the emoji is uploaded.</mat-hint>
             <mat-error *ngIf="formGroup.controls.emoji.errors">
                 {{ formGroup.controls.emoji.errorMessage }}
             </mat-error>
