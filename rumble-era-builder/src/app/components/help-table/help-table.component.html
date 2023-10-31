@@ -23,13 +23,23 @@
                 <mat-cell *matCellDef="let element">{{ element.p1_3 }}</mat-cell>
             </ng-container>
 
+            <ng-container matColumnDef="p1_4">
+                <mat-header-cell *matHeaderCellDef>&#123;p1_4&#125;</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{ element.p1_4 }}</mat-cell>
+            </ng-container>
+
             <ng-container matColumnDef="p1_w">
                 <mat-header-cell *matHeaderCellDef>&#123;p1_w&#125;</mat-header-cell>
                 <mat-cell *matCellDef="let element">{{ element.p1_w }}</mat-cell>
             </ng-container>
 
+            <ng-container matColumnDef="p1_is">
+                <mat-header-cell *matHeaderCellDef>&#123;p1_w&#125;</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{ element.p1_is }}</mat-cell>
+            </ng-container>
+
             <ng-container matColumnDef="mergedFooter">
-                <mat-footer-cell *matFooterCellDef colspan="7">
+                <mat-footer-cell *matFooterCellDef colspan="8">
                     Plus can be used in all patterns. <br>
                     &#123;p1&#125; will be replaced with player name. <br>
                     &#123;item&#125; will be replaced with item name. <br>
