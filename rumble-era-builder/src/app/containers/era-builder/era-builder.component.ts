@@ -124,7 +124,7 @@ export class EraBuilderComponent implements OnInit, ComponentCanDeactivate {
   public loadEra(text: string) {
     const parsed = this.jsonService.parseJSON(text);
     this.itemFormArray.clear();
-    this.era = parsed ?? new EraMainForm;
+    this.era = parsed ?? new EraMainForm();
     if (parsed == null) {
       this.openSnackBar("Invalid era file. Could not be loaded.")
       return;
@@ -142,7 +142,8 @@ export class EraBuilderComponent implements OnInit, ComponentCanDeactivate {
   }
 
   public removeItem(index: number) {
-    this.itemFormArray.removeAt(index);
+    this.era?.items.splice(index, 1);
+    this.itemFormArray.removeAt(index); 
   }
 
   public onFileChange(event: Event) {
