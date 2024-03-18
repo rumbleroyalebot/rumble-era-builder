@@ -65,10 +65,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "rumble-era-builder:build:production"
+              "buildTarget": "rumble-era-builder:build:production"
             },
             "development": {
-              "browserTarget": "rumble-era-builder:build:development"
+              "buildTarget": "rumble-era-builder:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -76,7 +76,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "rumble-era-builder:build"
+            "buildTarget": "rumble-era-builder:build"
           }
         },
         "test": {
