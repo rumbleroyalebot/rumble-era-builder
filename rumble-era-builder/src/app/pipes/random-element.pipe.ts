@@ -1,11 +1,10 @@
 import { Pipe, PipeTransform } from "@angular/core";
 
 @Pipe({
-    name: "randomElement",
-    standalone: true
+  name: "randomElement",
+  standalone: true,
 })
 export class RandomElementPipe implements PipeTransform {
-
   transform(array: unknown[]): unknown | undefined {
     if (array?.length === 0) {
       return undefined;
@@ -13,5 +12,4 @@ export class RandomElementPipe implements PipeTransform {
     const randomIndex = Math.floor(Math.random() * array.length);
     return array[randomIndex];
   }
-
 }

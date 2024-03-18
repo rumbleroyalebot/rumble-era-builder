@@ -1,8 +1,12 @@
-
 import { Component, HostListener, OnInit } from "@angular/core";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
-import { IFormGroup, RxFormArray, RxFormBuilder, RxReactiveFormsModule } from "@rxweb/reactive-form-validators";
+import {
+  IFormGroup,
+  RxFormArray,
+  RxFormBuilder,
+  RxReactiveFormsModule,
+} from "@rxweb/reactive-form-validators";
 import { ComponentCanDeactivate } from "src/app/guards/pending-changes.guard";
 import { EraMainForm } from "src/app/models/forms/era-main-form";
 import { ItemForm } from "src/app/models/forms/item-form";
@@ -24,13 +28,29 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 @UntilDestroy()
 @Component({
-    templateUrl: "./era-builder.component.html",
-    styleUrls: ["./era-builder.component.less"],
-    standalone: true,
-    imports: [FormsModule, MainEraInfoComponent, ReactiveFormsModule, RxReactiveFormsModule, HelpTableComponent, MatTabsModule, MatIconModule, PhraseBuilderSectionComponent, MatFormFieldModule, MatInputModule, MatButtonModule, ItemBuilderSectionComponent, MatSlideToggleModule, TextFieldModule, TitleCasePipe, RandomElementPipe]
+  templateUrl: "./era-builder.component.html",
+  styleUrls: ["./era-builder.component.less"],
+  standalone: true,
+  imports: [
+    FormsModule,
+    MainEraInfoComponent,
+    ReactiveFormsModule,
+    RxReactiveFormsModule,
+    HelpTableComponent,
+    MatTabsModule,
+    MatIconModule,
+    PhraseBuilderSectionComponent,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    ItemBuilderSectionComponent,
+    MatSlideToggleModule,
+    TextFieldModule,
+    TitleCasePipe,
+    RandomElementPipe,
+  ],
 })
 export class EraBuilderComponent implements OnInit, ComponentCanDeactivate {
-
   public formGroup: IFormGroup<EraMainForm>;
   public loadingPhrasesFormArray: RxFormArray;
   public killPhrasesFormArray: RxFormArray;
@@ -49,7 +69,7 @@ export class EraBuilderComponent implements OnInit, ComponentCanDeactivate {
     death: [],
     revive: [],
     life: [],
-    items: []
+    items: [],
   };
 
   public showHelpTable = false;
@@ -59,21 +79,30 @@ export class EraBuilderComponent implements OnInit, ComponentCanDeactivate {
   constructor(
     private readonly jsonService: EraJsonGeneratorService,
     private readonly formBuilder: RxFormBuilder,
-    private readonly snackBar: MatSnackBar
+    private readonly snackBar: MatSnackBar,
   ) {
-    this.formGroup = this.formBuilder.formGroup(EraMainForm) as IFormGroup<EraMainForm>;
-    this.loadingPhrasesFormArray = this.formGroup.controls.loadingPhrases as unknown as RxFormArray;
-    this.killPhrasesFormArray = this.formGroup.controls.killPhrases as unknown as RxFormArray;
-    this.revivePhrasesFormArray = this.formGroup.controls.revivePhrases as unknown as RxFormArray;
-    this.deathPhrasesFormArray = this.formGroup.controls.deathPhrases as unknown as RxFormArray;
-    this.lifePhrasesFormArray = this.formGroup.controls.lifePhrases as unknown as RxFormArray;
-    this.itemFormArray = this.formGroup.controls.items as unknown as RxFormArray;
+    this.formGroup = this.formBuilder.formGroup(
+      EraMainForm,
+    ) as IFormGroup<EraMainForm>;
+    this.loadingPhrasesFormArray = this.formGroup.controls
+      .loadingPhrases as unknown as RxFormArray;
+    this.killPhrasesFormArray = this.formGroup.controls
+      .killPhrases as unknown as RxFormArray;
+    this.revivePhrasesFormArray = this.formGroup.controls
+      .revivePhrases as unknown as RxFormArray;
+    this.deathPhrasesFormArray = this.formGroup.controls
+      .deathPhrases as unknown as RxFormArray;
+    this.lifePhrasesFormArray = this.formGroup.controls
+      .lifePhrases as unknown as RxFormArray;
+    this.itemFormArray = this.formGroup.controls
+      .items as unknown as RxFormArray;
   }
 
   public ngOnInit() {
-    this.jsonService.loadSampleEra()
+    this.jsonService
+      .loadSampleEra()
       .pipe(untilDestroyed(this))
-      .subscribe(era => {
+      .subscribe((era) => {
         this.sampleEra = era;
         this.samples.loading = era.phrases.loading;
         this.samples.kill = Object.values(era.phrases.default.kill);
@@ -106,17 +135,19 @@ export class EraBuilderComponent implements OnInit, ComponentCanDeactivate {
   unloadNotification($event: BeforeUnloadEvent): void {
     if (this.formGroup.dirty) {
       $event.preventDefault();
-      $event.returnValue = "WARNING: You have unsaved changes. Make sure to download new era file to not lose them.";
+      $event.returnValue =
+        "WARNING: You have unsaved changes. Make sure to download new era file to not lose them.";
     }
   }
 
-
   private getErrorMessages(): string {
     return Object.values(this.formGroup.controls)
-      .map(control => Object.values(control.errors || {})
-        .map(error => error.message)
-        .join("\n"))
-      .filter(message => message)
+      .map((control) =>
+        Object.values(control.errors || {})
+          .map((error) => error.message)
+          .join("\n"),
+      )
+      .filter((message) => message)
       .join("\n");
   }
 
@@ -125,15 +156,19 @@ export class EraBuilderComponent implements OnInit, ComponentCanDeactivate {
     const era = this.formGroup.value;
     if (this.itemFormArray?.length < 1) {
       this.openSnackBar("Era must have at least one item!");
-      this.eraJson = "Era must have at least one item!"
+      this.eraJson = "Era must have at least one item!";
       return;
     }
     if (this.formGroup.valid) {
-      this.eraJson = JSON.stringify(this.jsonService.generateEraJSON(era), null, 2);
-      this.openSnackBar("Era generated.")
+      this.eraJson = JSON.stringify(
+        this.jsonService.generateEraJSON(era),
+        null,
+        2,
+      );
+      this.openSnackBar("Era generated.");
     } else {
-      this.openSnackBar("Fix all errors to generate custom era.")
-      this.eraJson = "Fix all errors to generate custom era." //this.getErrorMessages();
+      this.openSnackBar("Fix all errors to generate custom era.");
+      this.eraJson = "Fix all errors to generate custom era."; //this.getErrorMessages();
     }
   }
 
@@ -142,24 +177,26 @@ export class EraBuilderComponent implements OnInit, ComponentCanDeactivate {
     this.itemFormArray.clear();
     this.era = parsed ?? new EraMainForm();
     if (parsed == null) {
-      this.openSnackBar("Invalid era file. Could not be loaded.")
+      this.openSnackBar("Invalid era file. Could not be loaded.");
       return;
     }
-    this.era.items.forEach(form => this.itemFormArray.push(this.formBuilder.formGroup(form)))
+    this.era.items.forEach((form) =>
+      this.itemFormArray.push(this.formBuilder.formGroup(form)),
+    );
     this.formGroup.patchModelValue(this.era);
     this.openSnackBar("Era loaded.");
   }
 
   public addItem() {
     const fg = this.formBuilder.formGroup(ItemForm) as IFormGroup<ItemForm>;
-    fg.controls.name.setValue(this.newItemName || "Item")
+    fg.controls.name.setValue(this.newItemName || "Item");
     this.itemFormArray.push(fg);
     this.newItemName = "";
   }
 
   public removeItem(index: number) {
     this.era?.items.splice(index, 1);
-    this.itemFormArray.removeAt(index); 
+    this.itemFormArray.removeAt(index);
   }
 
   public onFileChange(event: Event) {
@@ -186,16 +223,16 @@ export class EraBuilderComponent implements OnInit, ComponentCanDeactivate {
     const era = this.formGroup.value;
     if (this.itemFormArray?.length < 1) {
       this.openSnackBar("Era must have at least one item!");
-      this.eraJson = "Era must have at least one item!"
+      this.eraJson = "Era must have at least one item!";
       return;
     }
     if (!this.formGroup.valid) {
       this.openSnackBar("Fix all errors to generate custom era.");
-      this.eraJson = "Fix all errors to generate custom era." //this.getErrorMessages();
+      this.eraJson = "Fix all errors to generate custom era."; //this.getErrorMessages();
       return;
     }
 
-    const json = this.jsonService.generateEraJSON(era)
+    const json = this.jsonService.generateEraJSON(era);
     this.eraJson = JSON.stringify(json, null, 2);
 
     const fileName = era.name.toLowerCase().replace(" ", "_") + ".json";

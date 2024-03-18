@@ -5,5 +5,9 @@ import { PendingChangesGuard } from "./guards/pending-changes.guard";
 export const ROUTES: Routes = [
   // { path: "", component: IndexPageComponent },
   { path: "builder", redirectTo: "", pathMatch: "full" },
-  { path: "", component: EraBuilderComponent, canDeactivate: [PendingChangesGuard] }
+  {
+    path: "",
+    component: EraBuilderComponent,
+    canDeactivate: [PendingChangesGuard],
+  },
 ];

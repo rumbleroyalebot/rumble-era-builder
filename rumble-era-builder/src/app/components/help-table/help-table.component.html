@@ -1,5 +1,7 @@
 <div class="container">
-  <mat-slide-toggle class="slider" [(ngModel)]="showTable">Show pronouns formatting</mat-slide-toggle>
+  <mat-slide-toggle class="slider" [(ngModel)]="showTable"
+    >Show pronouns formatting</mat-slide-toggle
+  >
 
   @if (showTable) {
     <div class="floating-help">
@@ -30,14 +32,15 @@
         </ng-container>
         <ng-container matColumnDef="mergedFooter">
           <mat-footer-cell *matFooterCellDef colspan="8">
-            Plus can be used in all patterns. <br>
-            &#123;p1&#125; will be replaced with player name. <br>
-            &#123;item&#125; will be replaced with item name. <br>
-            &#123;p1_is&#125; works like &#123;p1_w&#125; but is replaced with is/are.<br>
+            Plus can be used in all patterns. <br />
+            &#123;p1&#125; will be replaced with player name. <br />
+            &#123;item&#125; will be replaced with item name. <br />
+            &#123;p1_is&#125; works like &#123;p1_w&#125; but is replaced with
+            is/are.<br />
           </mat-footer-cell>
         </ng-container>
         <mat-header-row *matHeaderRowDef="columns"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: columns;"></mat-row>
+        <mat-row *matRowDef="let row; columns: columns"></mat-row>
         <mat-footer-row *matFooterRowDef="['mergedFooter']"></mat-footer-row>
       </mat-table>
     </div>

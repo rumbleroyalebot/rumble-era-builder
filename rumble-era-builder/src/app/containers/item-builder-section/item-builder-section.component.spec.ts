@@ -8,8 +8,8 @@ describe("ItemBuilderSectionComponent", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-    imports: [ItemBuilderSectionComponent]
-});
+      imports: [ItemBuilderSectionComponent],
+    });
     fixture = TestBed.createComponent(ItemBuilderSectionComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

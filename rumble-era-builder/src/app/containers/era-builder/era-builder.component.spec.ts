@@ -8,8 +8,8 @@ describe("EraBuilderComponent", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-    imports: [AppModule, EraBuilderComponent],
-});
+      imports: [AppModule, EraBuilderComponent],
+    });
     fixture = TestBed.createComponent(EraBuilderComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

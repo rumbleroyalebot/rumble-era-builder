@@ -9,8 +9,8 @@ describe("MainEraInfoComponent", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-    imports: [AppModule, MainEraInfoComponent],
-});
+      imports: [AppModule, MainEraInfoComponent],
+    });
     fixture = TestBed.createComponent(MainEraInfoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

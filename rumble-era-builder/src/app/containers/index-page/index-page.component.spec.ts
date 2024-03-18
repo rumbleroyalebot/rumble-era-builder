@@ -8,8 +8,8 @@ describe("IndexPageComponent", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-    imports: [IndexPageComponent]
-});
+      imports: [IndexPageComponent],
+    });
     fixture = TestBed.createComponent(IndexPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

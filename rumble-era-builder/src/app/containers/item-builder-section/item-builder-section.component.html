@@ -1,10 +1,13 @@
 <form [formGroup]="formGroup">
-
-
   <div class="form-row item-name">
     <mat-form-field appearance="outline">
       <mat-label>Item Name</mat-label>
-      <input [placeholder]="placeholder" type="text" matInput [formControl]="$any(formGroup.controls.name)">
+      <input
+        [placeholder]="placeholder"
+        type="text"
+        matInput
+        [formControl]="$any(formGroup.controls.name)"
+      />
       <mat-hint>Provide a short name for the item.</mat-hint>
       @if (formGroup.controls.name.errors) {
         <mat-error>
@@ -13,14 +16,30 @@
       }
     </mat-form-field>
 
-    <button type="button" mat-raised-button color="warn" (click)="tryRemoveItem()">Remove Item</button>
+    <button
+      type="button"
+      mat-raised-button
+      color="warn"
+      (click)="tryRemoveItem()"
+    >
+      Remove Item
+    </button>
   </div>
 
   <div class="form-row">
     <mat-form-field appearance="outline">
       <mat-label>Emoji</mat-label>
-      <input placeholder="&lt;:leghorse:123456789&gt;" type="url" matInput [formControl]="$any(formGroup.controls.emoji)">
-      <mat-hint>Provide emoji for this item. Use the Discord format of &lt;:name:id&gt;.<br>RR bot must be in the server where the emoji is uploaded.</mat-hint>
+      <input
+        placeholder="&lt;:leghorse:123456789&gt;"
+        type="url"
+        matInput
+        [formControl]="$any(formGroup.controls.emoji)"
+      />
+      <mat-hint
+        >Provide emoji for this item. Use the Discord format of
+        &lt;:name:id&gt;.<br />RR bot must be in the server where the emoji is
+        uploaded.</mat-hint
+      >
       @if (formGroup.controls.emoji.errors) {
         <mat-error>
           {{ formGroup.controls.emoji.errorMessage }}
@@ -33,30 +52,39 @@
     <mat-tab>
       <ng-template mat-tab-label>
         Item Unlock Phrases
-        @if (formGroup.controls.obtainPhrases.touched && formGroup.controls.obtainPhrases.invalid) {
-          <mat-icon icon
-            class="tab-icon" fontIcon="warning" />
+        @if (
+          formGroup.controls.obtainPhrases.touched &&
+          formGroup.controls.obtainPhrases.invalid
+        ) {
+          <mat-icon icon class="tab-icon" fontIcon="warning" />
         }
       </ng-template>
       <app-phrase-builder-section
         infoText="Phrases for when a player acquires this item. The phrases should include one player and the item name - {p1} and __{item}__. Double underscores highlight the item name."
-        [playerCount]="1" [hasItemUnlock]="true" [phraseFormArray]="$any(formGroup.controls.obtainPhrases)"
-        [phraseForm]="obtainPhraseForm" />
+        [playerCount]="1"
+        [hasItemUnlock]="true"
+        [phraseFormArray]="$any(formGroup.controls.obtainPhrases)"
+        [phraseForm]="obtainPhraseForm"
+      />
     </mat-tab>
 
     <mat-tab>
       <ng-template mat-tab-label>
         Item Kill Phrases
-        @if (formGroup.controls.killPhrases.touched && formGroup.controls.killPhrases.invalid) {
-          <mat-icon icon
-            class="tab-icon" fontIcon="warning" />
+        @if (
+          formGroup.controls.killPhrases.touched &&
+          formGroup.controls.killPhrases.invalid
+        ) {
+          <mat-icon icon class="tab-icon" fontIcon="warning" />
         }
       </ng-template>
       <app-phrase-builder-section
         infoText="Phrases describing one player killing another using this item. Include two players and the item name - {p1}, {p2}, and {item}. Here, {p1} is the attacker wielding the item, and {p2} is the one who gets killed."
-        [playerCount]="2" [hasItem]="true" [phraseFormArray]="$any(formGroup.controls.killPhrases)"
-        [phraseForm]="killPhraseForm" />
+        [playerCount]="2"
+        [hasItem]="true"
+        [phraseFormArray]="$any(formGroup.controls.killPhrases)"
+        [phraseForm]="killPhraseForm"
+      />
     </mat-tab>
   </mat-tab-group>
-
 </form>

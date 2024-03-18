@@ -1,63 +1,80 @@
 /* You can add global styles to this file, and also import other style files */
-html, body {
-    height: 100%;
+html,
+body {
+  height: 100%;
 }
 
 body {
-    margin: 0;
-    font-family: Roboto, "Helvetica Neue", sans-serif;
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
 .form-row {
-    width: 100%;
-    display: block;
-    margin-bottom: 1em;
+  width: 100%;
+  display: block;
+  margin-bottom: 1em;
 }
 
 .inline {
-    display: inline-flex;
+  display: inline-flex;
 }
 
-.mdc-button__label, .darkmodeContainer {
-    display: flex;
+.mdc-button__label,
+.darkmodeContainer {
+  display: flex;
 }
 
 // Dark mode rules
 
 .dark-mode {
-    background-color: #121212;
-    color: #FFFFFF;
+  background-color: #121212;
+  color: #ffffff;
 
-    .content {
-      .border, .table {
-        border: 1pt solid gray;
-      }
-  
-      .mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-text-field__input {
-        color: white;
-      }
-  
-      input, textarea {
-        &::placeholder {
-          color: #cfcfcf !important;
-        }
-      }
-      .mat-form-field-outline {
+  .content {
+    .border,
+    .table {
+      border: 1pt solid gray;
+    }
+
+    .mdc-text-field--outlined:not(.mdc-text-field--disabled)
+      .mdc-text-field__input {
+      color: white;
+    }
+
+    input,
+    textarea {
+      &::placeholder {
         color: #cfcfcf !important;
-        border-color: #cfcfcf !important;
-      }
-      .mat-mdc-input-element.cdk-textarea-autosize.output.cdk-text-field-autofill-monitored {
-        background-color: #303030;
-        color: #FFFFFF;
       }
     }
-    .cdk-overlay-container {
-      .ngx-mat-colorpicker-content {
-        background-color: #303030;
-        color: #FFFFFF;
-      }
-      .ngx-mat-color-canvas .color-canvas-row:nth-of-type(2) .mat-mdc-form-field:first-of-type .symbol {
-        color: inherit;
-      }
+    .mat-form-field-outline {
+      color: #cfcfcf !important;
+      border-color: #cfcfcf !important;
     }
+    .mat-mdc-input-element.cdk-textarea-autosize.output.cdk-text-field-autofill-monitored {
+      background-color: #303030;
+      color: #ffffff;
+    }
+  }
+  .cdk-overlay-container {
+    .ngx-mat-colorpicker-content {
+      background-color: #303030;
+      color: #ffffff;
+    }
+    .ngx-mat-color-canvas
+      .color-canvas-row:nth-of-type(2)
+      .mat-mdc-form-field:first-of-type
+      .symbol {
+      color: inherit;
+    }
+  }
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 }
