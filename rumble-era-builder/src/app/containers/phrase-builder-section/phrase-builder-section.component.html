@@ -1,23 +1,25 @@
 <div class="form-row">
-    <span class="info">
-        <p>{{ infoText }}</p>
-    </span>
+  <span class="info">
+    <p>{{ infoText }}</p>
+  </span>
 </div>
 
-<ng-container *ngFor="let fg of formGroups; let i = index">
-    <div class="form-row" [formGroup]="fg">
-        <mat-form-field appearance="outline">
-            <mat-label> Phrase {{i+1}} </mat-label>
-            <input type="text" [placeholder]="$any(placeholders | randomElement)" matInput [formControl]="$any(fg.controls.phrase)">
-            <mat-error *ngIf="fg.controls.phrase.errors">
-                {{ fg.controls.phrase.errorMessage }}
-            </mat-error>
-        </mat-form-field>
-    </div>
-</ng-container>
+@for (fg of formGroups; track fg; let i = $index) {
+  <div class="form-row" [formGroup]="fg">
+    <mat-form-field appearance="outline">
+      <mat-label> Phrase {{i+1}} </mat-label>
+      <input type="text" [placeholder]="$any(placeholders | randomElement)" matInput [formControl]="$any(fg.controls.phrase)">
+      @if (fg.controls.phrase.errors) {
+        <mat-error>
+          {{ fg.controls.phrase.errorMessage }}
+        </mat-error>
+      }
+    </mat-form-field>
+  </div>
+}
 
 <div class="form-row buttons">
-    <button type="button" mat-raised-button color="secondary" (click)="addPhrase()">Add Phrase</button>
-    <button type="button" mat-raised-button color="warn" [disabled]="formGroups.length <= 1"
-        (click)="removePhrase()">Remove Last</button>
+  <button type="button" mat-raised-button color="secondary" (click)="addPhrase()">Add Phrase</button>
+  <button type="button" mat-raised-button color="warn" [disabled]="formGroups.length <= 1"
+  (click)="removePhrase()">Remove Last</button>
 </div>

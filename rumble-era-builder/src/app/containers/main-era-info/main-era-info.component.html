@@ -1,47 +1,54 @@
-<div [formGroup]="formGroup" *ngIf="formGroup">
+@if (formGroup) {
+  <div [formGroup]="formGroup">
     <div class="form-row">
-        <mat-form-field appearance="outline">
-            <mat-label>Era Name</mat-label>
-            <input id="era-name" placeholder="Magical" type="text" matInput [formControl]="$any(formGroup.controls.name)">
-            <mat-hint>Provide a short, preferably single-word, name for the era.</mat-hint>
-            <mat-error *ngIf="formGroup.controls.name.errors">
-                {{ formGroup.controls.name.errorMessage }}
-            </mat-error>
-        </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Era Name</mat-label>
+        <input id="era-name" placeholder="Magical" type="text" matInput [formControl]="$any(formGroup.controls.name)">
+        <mat-hint>Provide a short, preferably single-word, name for the era.</mat-hint>
+        @if (formGroup.controls.name.errors) {
+          <mat-error>
+            {{ formGroup.controls.name.errorMessage }}
+          </mat-error>
+        }
+      </mat-form-field>
     </div>
-
     <div class="form-row">
-        <mat-form-field appearance="outline">
-            <input matInput [ngxMatColorPicker]="picker" [formControl]="$any(formGroup.controls.colour)">
-            <mat-label>Colour</mat-label>
-            <ngx-mat-color-toggle matSuffix [for]="picker" />
-            <ngx-mat-color-picker #picker />
-            <mat-hint>Select a color for embeds using the color palette button.</mat-hint>
-            <mat-error *ngIf="formGroup.controls.colour.errors">
-                {{ formGroup.controls.colour.errorMessage }}
-            </mat-error>
-        </mat-form-field>
+      <mat-form-field appearance="outline">
+        <input matInput [ngxMatColorPicker]="picker" [formControl]="$any(formGroup.controls.colour)">
+        <mat-label>Colour</mat-label>
+        <ngx-mat-color-toggle matSuffix [for]="picker" />
+        <ngx-mat-color-picker #picker />
+        <mat-hint>Select a color for embeds using the color palette button.</mat-hint>
+        @if (formGroup.controls.colour.errors) {
+          <mat-error>
+            {{ formGroup.controls.colour.errorMessage }}
+          </mat-error>
+        }
+      </mat-form-field>
     </div>
-
     <div class="form-row">
-        <mat-form-field appearance="outline">
-            <mat-label>Icon</mat-label>
-            <input placeholder="https://example.com/image.png" type="url" matInput [formControl]="$any(formGroup.controls.icon)">
-            <mat-hint>Provide a link to an image to be used as the era icon in embed footers. Image hosting services like <a href="https://imgur.com/upload">Imgur</a> can be used.</mat-hint>
-            <mat-error *ngIf="formGroup.controls.icon.errors">
-                {{ formGroup.controls.icon.errorMessage }}
-            </mat-error>
-        </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Icon</mat-label>
+        <input placeholder="https://example.com/image.png" type="url" matInput [formControl]="$any(formGroup.controls.icon)">
+        <mat-hint>Provide a link to an image to be used as the era icon in embed footers. Image hosting services like <a href="https://imgur.com/upload">Imgur</a> can be used.</mat-hint>
+        @if (formGroup.controls.icon.errors) {
+          <mat-error>
+            {{ formGroup.controls.icon.errorMessage }}
+          </mat-error>
+        }
+      </mat-form-field>
     </div>
-
     <div class="form-row">
-        <mat-form-field appearance="outline">
-            <mat-label>Emoji</mat-label>
-            <input placeholder="&lt;:leghorse:123456789&gt;" type="url" matInput [formControl]="$any(formGroup.controls.emoji)">
-            <mat-hint>Era emoji. Use the Discord format of &lt;:name:id&gt;.<br>RR bot must be in the server where the emoji is uploaded.</mat-hint>
-            <mat-error *ngIf="formGroup.controls.emoji.errors">
-                {{ formGroup.controls.emoji.errorMessage }}
-            </mat-error>
-        </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Emoji</mat-label>
+        <input placeholder="&lt;:leghorse:123456789&gt;" type="url" matInput [formControl]="$any(formGroup.controls.emoji)">
+        <mat-hint>Era emoji. Use the Discord format of &lt;:name:id&gt;.<br>RR bot must be in the server where the emoji is uploaded.</mat-hint>
+        @if (formGroup.controls.emoji.errors) {
+          <mat-error>
+            {{ formGroup.controls.emoji.errorMessage }}
+          </mat-error>
+        }
+      </mat-form-field>
     </div>
-</div>
+  </div>
+}
