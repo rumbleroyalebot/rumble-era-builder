@@ -1,10 +1,16 @@
 import { ChangeDetectionStrategy, Component } from "@angular/core";
+import { MatTableModule } from "@angular/material/table";
+import { RxReactiveFormsModule } from "@rxweb/reactive-form-validators";
+import { FormsModule } from "@angular/forms";
+import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 
 @Component({
-  selector: "app-help-table",
-  templateUrl: "./help-table.component.html",
-  styleUrls: ["./help-table.component.less"],
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: "app-help-table",
+    templateUrl: "./help-table.component.html",
+    styleUrls: ["./help-table.component.less"],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [MatSlideToggleModule, FormsModule, RxReactiveFormsModule, MatTableModule]
 })
 export class HelpTableComponent {
   public showTable = false;

@@ -6,9 +6,9 @@ import { MatToolbarModule } from "@angular/material/toolbar";
 
 describe("AppComponent", () => {
   beforeEach(() => TestBed.configureTestingModule({
-    imports: [RouterTestingModule, MatToolbarModule],
-    declarations: [AppComponent, NavbarComponent]
-  }));
+    imports: [RouterTestingModule, MatToolbarModule, NavbarComponent],
+    declarations: [AppComponent]
+}));
 
   it("should create the app", () => {
     const fixture = TestBed.createComponent(AppComponent);

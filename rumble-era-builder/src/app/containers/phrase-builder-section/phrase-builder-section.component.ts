@@ -1,12 +1,18 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { AbstractControl } from "@angular/forms";
-import { IFormGroup, RxFormArray, RxFormBuilder } from "@rxweb/reactive-form-validators";
+import { AbstractControl, FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { IFormGroup, RxFormArray, RxFormBuilder, RxReactiveFormsModule } from "@rxweb/reactive-form-validators";
 import { PhraseForm } from "src/app/models/forms/phrase-form";
+import { RandomElementPipe } from "../../pipes/random-element.pipe";
+import { MatButtonModule } from "@angular/material/button";
+import { MatInputModule } from "@angular/material/input";
+import { MatFormFieldModule } from "@angular/material/form-field";
 
 @Component({
-  selector: "app-phrase-builder-section",
-  templateUrl: "./phrase-builder-section.component.html",
-  styleUrls: ["./phrase-builder-section.component.less"]
+    selector: "app-phrase-builder-section",
+    templateUrl: "./phrase-builder-section.component.html",
+    styleUrls: ["./phrase-builder-section.component.less"],
+    standalone: true,
+    imports: [FormsModule, ReactiveFormsModule, RxReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, RandomElementPipe]
 })
 export class PhraseBuilderSectionComponent implements OnInit {
   @Input() public heading: string;

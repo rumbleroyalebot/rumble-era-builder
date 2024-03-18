@@ -11,9 +11,8 @@ describe("HelpTableComponent", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [HelpTableComponent],
-      imports: [MatTableModule, MatSlideToggleModule, FormsModule]
-    });
+    imports: [MatTableModule, MatSlideToggleModule, FormsModule, HelpTableComponent]
+});
     fixture = TestBed.createComponent(HelpTableComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

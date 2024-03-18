@@ -9,9 +9,8 @@ describe("PhraseBuilderSectionComponent", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [PhraseBuilderSectionComponent],
-      imports: [AppModule],
-    });
+    imports: [AppModule, PhraseBuilderSectionComponent],
+});
     fixture = TestBed.createComponent(PhraseBuilderSectionComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

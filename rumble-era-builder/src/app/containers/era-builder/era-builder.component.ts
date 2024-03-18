@@ -2,16 +2,32 @@
 import { Component, HostListener, OnInit } from "@angular/core";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
-import { IFormGroup, RxFormArray, RxFormBuilder } from "@rxweb/reactive-form-validators";
+import { IFormGroup, RxFormArray, RxFormBuilder, RxReactiveFormsModule } from "@rxweb/reactive-form-validators";
 import { ComponentCanDeactivate } from "src/app/guards/pending-changes.guard";
 import { EraMainForm } from "src/app/models/forms/era-main-form";
 import { ItemForm } from "src/app/models/forms/item-form";
 import { EraJsonGeneratorService } from "src/app/services/era-json-generator.service";
+import { RandomElementPipe } from "../../pipes/random-element.pipe";
+import { TitleCasePipe } from "@angular/common";
+import { TextFieldModule } from "@angular/cdk/text-field";
+import { MatSlideToggleModule } from "@angular/material/slide-toggle";
+import { ItemBuilderSectionComponent } from "../item-builder-section/item-builder-section.component";
+import { MatButtonModule } from "@angular/material/button";
+import { MatInputModule } from "@angular/material/input";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { PhraseBuilderSectionComponent } from "../phrase-builder-section/phrase-builder-section.component";
+import { MatIconModule } from "@angular/material/icon";
+import { MatTabsModule } from "@angular/material/tabs";
+import { HelpTableComponent } from "../../components/help-table/help-table.component";
+import { MainEraInfoComponent } from "../main-era-info/main-era-info.component";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 @UntilDestroy()
 @Component({
-  templateUrl: "./era-builder.component.html",
-  styleUrls: ["./era-builder.component.less"]
+    templateUrl: "./era-builder.component.html",
+    styleUrls: ["./era-builder.component.less"],
+    standalone: true,
+    imports: [FormsModule, MainEraInfoComponent, ReactiveFormsModule, RxReactiveFormsModule, HelpTableComponent, MatTabsModule, MatIconModule, PhraseBuilderSectionComponent, MatFormFieldModule, MatInputModule, MatButtonModule, ItemBuilderSectionComponent, MatSlideToggleModule, TextFieldModule, TitleCasePipe, RandomElementPipe]
 })
 export class EraBuilderComponent implements OnInit, ComponentCanDeactivate {
 

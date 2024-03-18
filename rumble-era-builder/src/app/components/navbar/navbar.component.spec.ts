@@ -10,9 +10,8 @@ describe("NavbarComponent", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [NavbarComponent],
-      imports: [MatToolbarModule, RouterTestingModule]
-    });
+    imports: [MatToolbarModule, RouterTestingModule, NavbarComponent]
+});
     fixture = TestBed.createComponent(NavbarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

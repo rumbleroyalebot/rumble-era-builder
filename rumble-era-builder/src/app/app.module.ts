@@ -26,40 +26,38 @@ import { PhraseBuilderSectionComponent } from "./containers/phrase-builder-secti
 import { RandomElementPipe } from "./pipes/random-element.pipe";
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    EraBuilderComponent,
-    IndexPageComponent,
-    NavbarComponent,
-    MainEraInfoComponent,
-    PhraseBuilderSectionComponent,
-    RandomElementPipe,
-    HelpTableComponent,
-    ItemBuilderSectionComponent
-  ],
-  imports: [
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    BrowserModule,
-    FormsModule, 
-    HttpClientModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatIconModule,
-    MatInputModule,
-    MatSlideToggleModule,
-    MatSnackBarModule,
-    MatTabsModule,
-    MatTableModule,
-    MatToolbarModule,
-    NgxMatColorPickerModule,
-    ReactiveFormsModule,
-    RxReactiveFormsModule,
-  ],
-  providers: [
-    { provide: MAT_COLOR_FORMATS, useValue: { display: { colorInput: "hex" } } },
-    { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { subscriptSizing: "dynamic" } }
-  ],
-  bootstrap: [AppComponent]
+    declarations: [AppComponent],
+    imports: [
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        BrowserModule,
+        FormsModule,
+        HttpClientModule,
+        MatButtonModule,
+        MatFormFieldModule,
+        MatIconModule,
+        MatInputModule,
+        MatSlideToggleModule,
+        MatSnackBarModule,
+        MatTabsModule,
+        MatTableModule,
+        MatToolbarModule,
+        NgxMatColorPickerModule,
+        ReactiveFormsModule,
+        RxReactiveFormsModule,
+        EraBuilderComponent,
+        IndexPageComponent,
+        NavbarComponent,
+        MainEraInfoComponent,
+        PhraseBuilderSectionComponent,
+        RandomElementPipe,
+        HelpTableComponent,
+        ItemBuilderSectionComponent,
+    ],
+    providers: [
+        { provide: MAT_COLOR_FORMATS, useValue: { display: { colorInput: "hex" } } },
+        { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { subscriptSizing: "dynamic" } }
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }
