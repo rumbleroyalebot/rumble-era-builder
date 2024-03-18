@@ -4,7 +4,7 @@
     <div class="form-row item-name">
         <mat-form-field appearance="outline">
             <mat-label>Item Name</mat-label>
-            <input [placeholder]="placeholder" type="text" matInput formControlName="name">
+            <input [placeholder]="placeholder" type="text" matInput [formControl]="$any(formGroup.controls.name)">
             <mat-hint>Provide a short name for the item.</mat-hint>
             <mat-error *ngIf="formGroup.controls.name.errors">
                 {{ formGroup.controls.name.errorMessage }}
@@ -17,7 +17,7 @@
     <div class="form-row">
         <mat-form-field appearance="outline">
             <mat-label>Emoji</mat-label>
-            <input placeholder="&lt;:leghorse:123456789&gt;" type="url" matInput formControlName="emoji">
+            <input placeholder="&lt;:leghorse:123456789&gt;" type="url" matInput [formControl]="$any(formGroup.controls.emoji)">
             <mat-hint>Provide emoji for this item. Use the Discord format of &lt;:name:id&gt;.<br>RR bot must be in the server where the emoji is uploaded.</mat-hint>
             <mat-error *ngIf="formGroup.controls.emoji.errors">
                 {{ formGroup.controls.emoji.errorMessage }}
