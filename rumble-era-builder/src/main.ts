@@ -13,15 +13,15 @@ import { withInterceptorsFromDi, provideHttpClient } from "@angular/common/http"
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { BrowserModule, bootstrapApplication } from "@angular/platform-browser";
 import { provideAnimations } from "@angular/platform-browser/animations";
-import { AppRoutingModule } from "./app/app-routing.module";
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldModule } from "@angular/material/form-field";
 import { MAT_COLOR_FORMATS, NgxMatColorPickerModule } from "@angular-material-components/color-picker";
+import { provideRouter } from "@angular/router";
+import { ROUTES } from "./app/app-routes";
 
 
 bootstrapApplication(AppComponent, {
     providers: [
         importProvidersFrom(
-            AppRoutingModule,
             BrowserModule,
             FormsModule,
             MatButtonModule,
@@ -37,6 +37,7 @@ bootstrapApplication(AppComponent, {
             ReactiveFormsModule,
             RxReactiveFormsModule
         ),
+        provideRouter(ROUTES),
         { provide: MAT_COLOR_FORMATS, useValue: { display: { colorInput: "hex" } } },
         { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { subscriptSizing: "dynamic" } },
         provideAnimations(),
