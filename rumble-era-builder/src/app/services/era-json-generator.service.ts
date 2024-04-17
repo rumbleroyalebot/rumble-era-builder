@@ -54,20 +54,32 @@ export class EraJsonGeneratorService {
     if (era.massKill && era.massRevive) {
       json["events"] = {
         mass_kill: {
-          available: era.massKill.map((x) => x.name),
+          available: era.massKill.map((x) => x.name.toLowerCase()),
           phrases: era.massKill.reduce(
-            (acc, { name, phrases }) => ({ ...acc, [name]: phrases }),
+            (acc, { name, phrases }) => ({
+              ...acc,
+              [name.toLowerCase()]: phrases.map((x) => x.phrase),
+            }),
             {},
           ),
-          images: era.massKill.reduce((acc, { name, image }) => ({ ...acc, [name]: image }), {}),
+          images: era.massKill.reduce(
+            (acc, { name, image }) => ({ ...acc, [name.toLowerCase()]: image }),
+            {},
+          ),
         },
         mass_revive: {
-          available: era.massRevive.map((x) => x.name),
+          available: era.massRevive.map((x) => x.name.toLowerCase()),
           phrases: era.massRevive.reduce(
-            (acc, { name, phrases }) => ({ ...acc, [name]: phrases }),
+            (acc, { name, phrases }) => ({
+              ...acc,
+              [name.toLowerCase()]: phrases.map((x) => x.phrase),
+            }),
             {},
           ),
-          images: era.massRevive.reduce((acc, { name, image }) => ({ ...acc, [name]: image }), {}),
+          images: era.massRevive.reduce(
+            (acc, { name, image }) => ({ ...acc, [name.toLowerCase()]: image }),
+            {},
+          ),
         },
       };
     }
@@ -109,7 +121,11 @@ export class EraJsonGeneratorService {
           const event = new MassEventForm();
           event.name = eventName;
           event.image = massKill.images[eventName];
-          event.phrases = massKill.phrases[eventName];
+          event.phrases = massKill.phrases[eventName].map((x: string) => {
+            const p = new PhraseForm();
+            p.phrase = x;
+            return p;
+          });
           era.massKill.push(event);
         });
 
@@ -118,11 +134,14 @@ export class EraJsonGeneratorService {
           const event = new MassEventForm();
           event.name = eventName;
           event.image = massRevive.images[eventName];
-          event.phrases = massRevive.phrases[eventName];
+          event.phrases = massRevive.phrases[eventName].map((x: string) => {
+            const p = new PhraseForm();
+            p.phrase = x;
+            return p;
+          });
           era.massRevive.push(event);
         });
       }
-
       return era;
     } catch (e) {
       console.log(e);

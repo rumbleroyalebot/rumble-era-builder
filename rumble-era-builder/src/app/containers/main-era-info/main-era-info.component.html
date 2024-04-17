@@ -1,6 +1,6 @@
 @if (formGroup) {
   <div [formGroup]="formGroup">
-    <div class="form-row">
+    <div class="form-row era-name">
       <mat-form-field appearance="outline">
         <mat-label>Era Name</mat-label>
         <input
@@ -17,7 +17,12 @@
           </mat-error>
         }
       </mat-form-field>
+
+      @if (formGroup.controls.icon.valid) {
+        <app-image-preview class="image-preview" [imageUrl]="formGroup.controls.icon.value" />
+      }
     </div>
+
     <div class="form-row">
       <mat-form-field appearance="outline">
         <mat-label>Colour</mat-label>
@@ -39,6 +44,7 @@
         }
       </mat-form-field>
     </div>
+
     <div class="form-row">
       <mat-form-field appearance="outline">
         <mat-label>Icon</mat-label>
@@ -59,6 +65,7 @@
         }
       </mat-form-field>
     </div>
+
     <div class="form-row">
       <mat-form-field appearance="outline">
         <mat-label>Emoji</mat-label>

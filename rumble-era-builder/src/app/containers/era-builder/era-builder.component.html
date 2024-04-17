@@ -1,4 +1,15 @@
 <div class="content">
+  <div class="form-row buttons">
+    <button type="button" mat-raised-button color="primary" (click)="downloadEra()">
+      Download Era File
+    </button>
+
+    <input type="file" accept="application/JSON" (change)="onFileChange($event)" #file hidden />
+    <button type="button" mat-raised-button color="primary" (click)="file.click()">
+      Upload Era File
+    </button>
+  </div>
+
   <form>
     <h1>Main info</h1>
 

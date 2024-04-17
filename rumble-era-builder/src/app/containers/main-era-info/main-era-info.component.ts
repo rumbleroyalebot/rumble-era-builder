@@ -5,6 +5,7 @@ import { MatInputModule } from "@angular/material/input";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { FormControl, FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { NgxColorsModule, validColorValidator } from "ngx-colors";
+import { ImagePreviewComponent } from "src/app/components/image-preview/image-preview.component";
 
 @Component({
   selector: "app-main-era-info",
@@ -18,6 +19,7 @@ import { NgxColorsModule, validColorValidator } from "ngx-colors";
     MatFormFieldModule,
     MatInputModule,
     NgxColorsModule,
+    ImagePreviewComponent,
   ],
 })
 export class MainEraInfoComponent implements OnInit {

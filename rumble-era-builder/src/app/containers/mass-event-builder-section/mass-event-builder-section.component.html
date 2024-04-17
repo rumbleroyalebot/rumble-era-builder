@@ -21,26 +21,26 @@
     </button>
   </div>
 
-  <div class="form-row">
-    <!-- <mat-form-field appearance="outline">
-        <mat-label>Emoji</mat-label>
-        <input
-          placeholder="&lt;:leghorse:123456789&gt;"
-          type="url"
-          matInput
-          [formControl]="$any(formGroup.controls.emoji)"
-        />
-        <mat-hint
-          >Provide emoji for this item. Use the Discord format of
-          &lt;:name:id&gt;.<br />RR bot must be in the server where the emoji is
-          uploaded.</mat-hint
-        >
-        @if (formGroup.controls.emoji.errors) {
-          <mat-error>
-            {{ formGroup.controls.emoji.errorMessage }}
-          </mat-error>
-        }
-      </mat-form-field> -->
+  <div class="form-row event-image">
+    <mat-form-field appearance="outline">
+      <mat-label>Icon</mat-label>
+      <input
+        placeholder="https://example.com/image.png"
+        type="url"
+        matInput
+        [formControl]="$any(formGroup.controls.image)"
+      />
+      <mat-hint>Provide a link to an image to be used for the event.</mat-hint>
+      @if (formGroup.controls.image.errors) {
+        <mat-error>
+          {{ formGroup.controls.image.errorMessage }}
+        </mat-error>
+      }
+    </mat-form-field>
+
+    @if (formGroup.controls.image.valid) {
+      <app-image-preview class="image-preview" [imageUrl]="formGroup.controls.image.value" />
+    }
   </div>
 
   <mat-tab-group>

@@ -9,6 +9,7 @@ import { IFormGroup, RxReactiveFormsModule } from "@rxweb/reactive-form-validato
 import { PhraseBuilderSectionComponent } from "../phrase-builder-section/phrase-builder-section.component";
 import { MassEventForm } from "src/app/models/forms/mass-event-form";
 import { PhraseForm } from "src/app/models/forms/phrase-form";
+import { ImagePreviewComponent } from "src/app/components/image-preview/image-preview.component";
 
 @Component({
   selector: "app-mass-event-builder-section",
@@ -23,6 +24,7 @@ import { PhraseForm } from "src/app/models/forms/phrase-form";
     MatTabsModule,
     MatIconModule,
     PhraseBuilderSectionComponent,
+    ImagePreviewComponent,
   ],
   templateUrl: "./mass-event-builder-section.component.html",
   styleUrls: ["./mass-event-builder-section.component.less"],
