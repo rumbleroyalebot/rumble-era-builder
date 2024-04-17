@@ -10,9 +10,7 @@
           matInput
           [formControl]="$any(formGroup.controls.name)"
         />
-        <mat-hint
-          >Provide a short, preferably single-word, name for the era.</mat-hint
-        >
+        <mat-hint>Provide a short, preferably single-word, name for the era.</mat-hint>
         @if (formGroup.controls.name.errors) {
           <mat-error>
             {{ formGroup.controls.name.errorMessage }}
@@ -33,14 +31,10 @@
           [formControl]="colourInput"
         />
 
-        <mat-hint
-          >Select a color for embeds using the color palette button.</mat-hint
-        >
+        <mat-hint>Select a color for embeds using the color palette button.</mat-hint>
         @if (formGroup.controls.colour.errors) {
           <mat-error>
-            {{
-              formGroup.controls.colour.errorMessage || "Invalid colour format."
-            }}
+            {{ formGroup.controls.colour.errorMessage || "Invalid colour format." }}
           </mat-error>
         }
       </mat-form-field>
@@ -55,9 +49,8 @@
           [formControl]="$any(formGroup.controls.icon)"
         />
         <mat-hint
-          >Provide a link to an image to be used as the era icon in embed
-          footers. Image hosting services like
-          <a href="https://imgur.com/upload">Imgur</a> can be used.</mat-hint
+          >Provide a link to an image to be used as the era icon in embed footers. Image hosting
+          services like <a href="https://imgur.com/upload">Imgur</a> can be used.</mat-hint
         >
         @if (formGroup.controls.icon.errors) {
           <mat-error>
@@ -76,8 +69,8 @@
           [formControl]="$any(formGroup.controls.emoji)"
         />
         <mat-hint
-          >Era emoji. Use the Discord format of &lt;:name:id&gt;.<br />RR bot
-          must be in the server where the emoji is uploaded.</mat-hint
+          >Era emoji. Use the Discord format of &lt;:name:id&gt;.<br />RR bot must be in the server
+          where the emoji is uploaded.</mat-hint
         >
         @if (formGroup.controls.emoji.errors) {
           <mat-error>

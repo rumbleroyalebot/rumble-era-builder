@@ -4,6 +4,7 @@ import { PhraseForm } from "../models/forms/phrase-form";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { ItemForm } from "../models/forms/item-form";
+import { MassEventForm } from "../models/forms/mass-event-form";
 
 type JSONValue = string | number | boolean | null | JSONObject | JSONArray;
 type JSONObject = { [key: string]: JSONValue };
@@ -20,8 +21,6 @@ export class EraJsonGeneratorService {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const skins = {} as any;
     era.items.forEach((item) => (skins[item.name] = { normal: item.emoji }));
-
-    console.log(era.colour);
 
     const json: JSONObject = {
       name: era.name,
@@ -45,13 +44,33 @@ export class EraJsonGeneratorService {
 
     era.items.forEach((item) => {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      (json as any).phrases.default[item.name] = this.phraseFormsToJSON(
-        item.killPhrases,
-      );
+      (json as any).phrases.default[item.name] = this.phraseFormsToJSON(item.killPhrases);
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      (json as any).phrases.default["get_" + item.name] =
-        this.phraseFormsToJSON(item.obtainPhrases);
+      (json as any).phrases.default["get_" + item.name] = this.phraseFormsToJSON(
+        item.obtainPhrases,
+      );
     });
+
+    if (era.massKill && era.massRevive) {
+      json["events"] = {
+        mass_kill: {
+          available: era.massKill.map((x) => x.name),
+          phrases: era.massKill.reduce(
+            (acc, { name, phrases }) => ({ ...acc, [name]: phrases }),
+            {},
+          ),
+          images: era.massKill.reduce((acc, { name, image }) => ({ ...acc, [name]: image }), {}),
+        },
+        mass_revive: {
+          available: era.massRevive.map((x) => x.name),
+          phrases: era.massRevive.reduce(
+            (acc, { name, phrases }) => ({ ...acc, [name]: phrases }),
+            {},
+          ),
+          images: era.massRevive.reduce((acc, { name, image }) => ({ ...acc, [name]: image }), {}),
+        },
+      };
+    }
 
     return json;
   }
@@ -78,15 +97,31 @@ export class EraJsonGeneratorService {
         const item = new ItemForm();
         item.name = itemName;
         item.emoji = skins[itemName].normal;
-        item.killPhrases = this.JSONtoPhraseForms(
-          parsed.phrases.default[itemName],
-        );
-        item.obtainPhrases = this.JSONtoPhraseForms(
-          parsed.phrases.default["get_" + itemName],
-        );
+        item.killPhrases = this.JSONtoPhraseForms(parsed.phrases.default[itemName]);
+        item.obtainPhrases = this.JSONtoPhraseForms(parsed.phrases.default["get_" + itemName]);
 
         era.items.push(item);
       });
+
+      if ("events" in parsed) {
+        const massKill = parsed?.events?.mass_kill ?? { available: [] };
+        massKill.available.forEach((eventName: string) => {
+          const event = new MassEventForm();
+          event.name = eventName;
+          event.image = massKill.images[eventName];
+          event.phrases = massKill.phrases[eventName];
+          era.massKill.push(event);
+        });
+
+        const massRevive = parsed?.events?.mass_revive ?? { available: [] };
+        massRevive.available.forEach((eventName: string) => {
+          const event = new MassEventForm();
+          event.name = eventName;
+          event.image = massRevive.images[eventName];
+          event.phrases = massRevive.phrases[eventName];
+          era.massRevive.push(event);
+        });
+      }
 
       return era;
     } catch (e) {
@@ -113,9 +148,7 @@ export class EraJsonGeneratorService {
 
     phrases
       .map((p) => p.phrase)
-      .forEach(
-        (phrase, i) => (object[i.toString()] = phrase.replace("'", "\u2019")),
-      );
+      .forEach((phrase, i) => (object[i.toString()] = phrase.replace("'", "\u2019")));
 
     return object;
   }

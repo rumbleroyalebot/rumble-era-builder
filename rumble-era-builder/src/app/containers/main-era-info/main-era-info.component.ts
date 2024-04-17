@@ -1,8 +1,5 @@
 import { Component, Input, OnInit } from "@angular/core";
-import {
-  IFormGroup,
-  RxReactiveFormsModule,
-} from "@rxweb/reactive-form-validators";
+import { IFormGroup, RxReactiveFormsModule } from "@rxweb/reactive-form-validators";
 import { EraMainForm } from "src/app/models/forms/era-main-form";
 import { MatInputModule } from "@angular/material/input";
 import { MatFormFieldModule } from "@angular/material/form-field";

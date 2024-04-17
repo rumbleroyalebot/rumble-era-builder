@@ -33,8 +33,7 @@ export class ItemForm {
       discordEmoji:
         /^<(?:a)?:[a-zA-Z0-9_-]{1,30}:[0-9]{1,20}>$|^(\p{Emoji}\p{Emoji_Modifier}?|\p{Emoji_Presentation}|\p{Emoji_Modifier_Base}\p{Emoji_Modifier})$/u,
     },
-    message:
-      "Invalid format. Must be either <:name:id>, <a:name:id>, or a Unicode emoji.",
+    message: "Invalid format. Must be either <:name:id>, <a:name:id>, or a Unicode emoji.",
   })
   public emoji: string;
 

@@ -16,12 +16,7 @@
       }
     </mat-form-field>
 
-    <button
-      type="button"
-      mat-raised-button
-      color="warn"
-      (click)="tryRemoveItem()"
-    >
+    <button type="button" mat-raised-button color="warn" (click)="tryRemoveItem()">
       Remove Item
     </button>
   </div>
@@ -36,9 +31,8 @@
         [formControl]="$any(formGroup.controls.emoji)"
       />
       <mat-hint
-        >Provide emoji for this item. Use the Discord format of
-        &lt;:name:id&gt;.<br />RR bot must be in the server where the emoji is
-        uploaded.</mat-hint
+        >Provide emoji for this item. Use the Discord format of &lt;:name:id&gt;.<br />RR bot must
+        be in the server where the emoji is uploaded.</mat-hint
       >
       @if (formGroup.controls.emoji.errors) {
         <mat-error>
@@ -52,10 +46,7 @@
     <mat-tab>
       <ng-template mat-tab-label>
         Item Unlock Phrases
-        @if (
-          formGroup.controls.obtainPhrases.touched &&
-          formGroup.controls.obtainPhrases.invalid
-        ) {
+        @if (formGroup.controls.obtainPhrases.touched && formGroup.controls.obtainPhrases.invalid) {
           <mat-icon icon class="tab-icon" fontIcon="warning" />
         }
       </ng-template>
@@ -71,10 +62,7 @@
     <mat-tab>
       <ng-template mat-tab-label>
         Item Kill Phrases
-        @if (
-          formGroup.controls.killPhrases.touched &&
-          formGroup.controls.killPhrases.invalid
-        ) {
+        @if (formGroup.controls.killPhrases.touched && formGroup.controls.killPhrases.invalid) {
           <mat-icon icon class="tab-icon" fontIcon="warning" />
         }
       </ng-template>

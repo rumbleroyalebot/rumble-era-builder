@@ -1,8 +1,5 @@
 import { Component, Input, Output, EventEmitter } from "@angular/core";
-import {
-  IFormGroup,
-  RxReactiveFormsModule,
-} from "@rxweb/reactive-form-validators";
+import { IFormGroup, RxReactiveFormsModule } from "@rxweb/reactive-form-validators";
 import { ItemForm } from "src/app/models/forms/item-form";
 import { PhraseForm } from "src/app/models/forms/phrase-form";
 import { PhraseBuilderSectionComponent } from "../phrase-builder-section/phrase-builder-section.component";
@@ -44,11 +41,7 @@ export class ItemBuilderSectionComponent {
   @Input({ required: true }) public obtainPhraseForm: PhraseForm[];
 
   public tryRemoveItem() {
-    if (
-      confirm(
-        "Are you sure you want to remove this item? You will lose all its phrases.",
-      )
-    ) {
+    if (confirm("Are you sure you want to remove this item? You will lose all its phrases.")) {
       this.removeItem.emit(this.id);
     }
   }

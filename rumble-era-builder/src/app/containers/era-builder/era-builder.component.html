@@ -16,9 +16,7 @@
         <mat-tab>
           <ng-template mat-tab-label>
             Loading phrases
-            @if (
-              loadingPhrasesFormArray.touched && loadingPhrasesFormArray.invalid
-            ) {
+            @if (loadingPhrasesFormArray.touched && loadingPhrasesFormArray.invalid) {
               <mat-icon icon class="tab-icon" fontIcon="warning" />
             }
           </ng-template>
@@ -50,9 +48,7 @@
         <mat-tab>
           <ng-template mat-tab-label>
             Death phrases
-            @if (
-              deathPhrasesFormArray.touched && deathPhrasesFormArray.invalid
-            ) {
+            @if (deathPhrasesFormArray.touched && deathPhrasesFormArray.invalid) {
               <mat-icon icon class="tab-icon" fontIcon="warning" />
             }
           </ng-template>
@@ -68,9 +64,7 @@
         <mat-tab>
           <ng-template mat-tab-label>
             Revive phrases
-            @if (
-              revivePhrasesFormArray.touched && revivePhrasesFormArray.invalid
-            ) {
+            @if (revivePhrasesFormArray.touched && revivePhrasesFormArray.invalid) {
               <mat-icon icon class="tab-icon" fontIcon="warning" />
             }
           </ng-template>
@@ -115,20 +109,13 @@
             [ngModelOptions]="{ standalone: true }"
           />
         </mat-form-field>
-        <button
-          type="button"
-          mat-raised-button
-          color="primary"
-          (click)="addItem()"
-        >
+        <button type="button" mat-raised-button color="primary" (click)="addItem()">
           Add Item
         </button>
       </div>
 
       @if (itemFormArray.length === 0) {
-        <div class="mg-bottom border">
-          No items added. Use the button above.
-        </div>
+        <div class="mg-bottom border">No items added. Use the button above.</div>
       }
 
       @if (itemFormArray.length !== 0) {
@@ -137,10 +124,7 @@
             <mat-tab>
               <ng-template mat-tab-label>
                 {{ $any(fg).value.name | titlecase }}
-                @if (
-                  revivePhrasesFormArray.touched &&
-                  revivePhrasesFormArray.invalid
-                ) {
+                @if (itemFormArray.touched && itemFormArray.invalid) {
                   <mat-icon icon class="tab-icon" fontIcon="warning" />
                 }
               </ng-template>
@@ -150,7 +134,99 @@
                 (removeItem)="removeItem($event)"
                 [killPhraseForm]="era?.items?.[index]?.killPhrases ?? []"
                 [obtainPhraseForm]="era?.items?.[index]?.obtainPhrases ?? []"
-                [placeholder]="$any(samples.items | randomElement) | titlecase"
+                [placeholder]="$any(samples.massKill | randomElement) | titlecase"
+              />
+            </mat-tab>
+          }
+        </mat-tab-group>
+      }
+    </div>
+
+    <div>
+      <h1 class="title">Mass Kill Events</h1>
+
+      <div class="form-row item-add">
+        <mat-form-field appearance="outline">
+          <mat-label>Event Name</mat-label>
+          <input
+            [placeholder]="$any(samples.massKill | randomElement) | titlecase"
+            type="text"
+            matInput
+            [(ngModel)]="newMassKillEventName"
+            [ngModelOptions]="{ standalone: true }"
+          />
+        </mat-form-field>
+        <button type="button" mat-raised-button color="primary" (click)="addMassKillEvent()">
+          Add Kill Event
+        </button>
+      </div>
+
+      @if (massKillFormArray.length === 0) {
+        <div class="mg-bottom border">No events added. Use the button above.</div>
+      }
+
+      @if (massKillFormArray.length !== 0) {
+        <mat-tab-group class="mg-bottom border">
+          @for (fg of massKillFormArray.controls; track fg; let index = $index) {
+            <mat-tab>
+              <ng-template mat-tab-label>
+                {{ $any(fg).value.name | titlecase }}
+                @if (massKillFormArray.touched && massKillFormArray.invalid) {
+                  <mat-icon icon class="tab-icon" fontIcon="warning" />
+                }
+              </ng-template>
+              <app-mass-event-builder-section
+                [formGroup]="$any(fg)"
+                [id]="index"
+                (removeItem)="removeMassKillEvent($event)"
+                [phraseForm]="era?.massKill?.[index]?.phrases ?? []"
+                [placeholder]="$any(samples.massKill | randomElement) | titlecase"
+              />
+            </mat-tab>
+          }
+        </mat-tab-group>
+      }
+    </div>
+
+    <div>
+      <h1 class="title">Mass Revive Events</h1>
+
+      <div class="form-row item-add">
+        <mat-form-field appearance="outline">
+          <mat-label>Event Name</mat-label>
+          <input
+            [placeholder]="$any(samples.massRevive | randomElement) | titlecase"
+            type="text"
+            matInput
+            [(ngModel)]="newMassReviveEventName"
+            [ngModelOptions]="{ standalone: true }"
+          />
+        </mat-form-field>
+        <button type="button" mat-raised-button color="primary" (click)="addMassReviveEvent()">
+          Add Revive Event
+        </button>
+      </div>
+
+      @if (massReviveFormArray.length === 0) {
+        <div class="mg-bottom border">No events added. Use the button above.</div>
+      }
+
+      @if (massReviveFormArray.length !== 0) {
+        <mat-tab-group class="mg-bottom border">
+          @for (fg of massReviveFormArray.controls; track fg; let index = $index) {
+            <mat-tab>
+              <ng-template mat-tab-label>
+                {{ $any(fg).value.name | titlecase }}
+                @if (massReviveFormArray.touched && massReviveFormArray.invalid) {
+                  <mat-icon icon class="tab-icon" fontIcon="warning" />
+                }
+              </ng-template>
+              <app-mass-event-builder-section
+                [formGroup]="$any(fg)"
+                [id]="index"
+                (removeItem)="removeMassReviveEvent($event)"
+                [phraseForm]="era?.massRevive?.[index]?.phrases ?? []"
+                [placeholder]="$any(samples.massRevive | randomElement) | titlecase"
               />
             </mat-tab>
           }
@@ -160,28 +236,12 @@
   </form>
 
   <div class="form-row buttons">
-    <button
-      type="button"
-      mat-raised-button
-      color="primary"
-      (click)="downloadEra()"
-    >
+    <button type="button" mat-raised-button color="primary" (click)="downloadEra()">
       Download Era File
     </button>
 
-    <input
-      type="file"
-      accept="application/JSON"
-      (change)="onFileChange($event)"
-      #file
-      hidden
-    />
-    <button
-      type="button"
-      mat-raised-button
-      color="primary"
-      (click)="file.click()"
-    >
+    <input type="file" accept="application/JSON" (change)="onFileChange($event)" #file hidden />
+    <button type="button" mat-raised-button color="primary" (click)="file.click()">
       Upload Era File
     </button>
   </div>
@@ -192,20 +252,10 @@
   @if (showPreview) {
     <h1>Preview</h1>
     <div class="form-row buttons">
-      <button
-        type="button"
-        mat-raised-button
-        color="accent"
-        (click)="buildEra()"
-      >
+      <button type="button" mat-raised-button color="accent" (click)="buildEra()">
         Build Preview
       </button>
-      <button
-        type="button"
-        mat-raised-button
-        color="accent"
-        (click)="loadEra(JSONOutput.value)"
-      >
+      <button type="button" mat-raised-button color="accent" (click)="loadEra(JSONOutput.value)">
         Load From Preview
       </button>
     </div>

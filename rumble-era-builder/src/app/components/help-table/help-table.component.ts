@@ -10,12 +10,7 @@ import { MatSlideToggleModule } from "@angular/material/slide-toggle";
   styleUrls: ["./help-table.component.less"],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [
-    MatSlideToggleModule,
-    FormsModule,
-    RxReactiveFormsModule,
-    MatTableModule,
-  ],
+  imports: [MatSlideToggleModule, FormsModule, RxReactiveFormsModule, MatTableModule],
 })
 export class HelpTableComponent {
   public showTable = false;

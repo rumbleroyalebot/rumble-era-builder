@@ -11,12 +11,7 @@ describe("HelpTableComponent", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        MatTableModule,
-        MatSlideToggleModule,
-        FormsModule,
-        HelpTableComponent,
-      ],
+      imports: [MatTableModule, MatSlideToggleModule, FormsModule, HelpTableComponent],
     });
     fixture = TestBed.createComponent(HelpTableComponent);
     component = fixture.componentInstance;

@@ -9,6 +9,7 @@ import {
 } from "@rxweb/reactive-form-validators";
 import { ItemForm } from "./item-form";
 import { PhraseForm } from "./phrase-form";
+import { MassEventForm } from "./mass-event-form";
 
 export class EraMainForm {
   @prop()
@@ -30,14 +31,13 @@ export class EraMainForm {
 
   @prop()
   @required({ message: "Era colour is required." })
-  public colour: string = "#0077ff";
+  public colour = "#0077ff";
 
   @prop()
   // @url({ message: "Icon must be a valid link to an image" })
   @pattern({
     expression: {
-      imageLink:
-        /^(https?:\/\/)?(www\.)?[\w.-]+(\/[\w.-]*)*\.(jpg|jpeg|png|webp|gif)$/,
+      imageLink: /^(https?:\/\/)?(www\.)?[\w.-]+(\/[\w.-]*)*\.(jpg|jpeg|png|webp|gif)$/,
     },
     message: "Link must point to a valid jpg, png, webp or gif image.",
   })
@@ -51,8 +51,7 @@ export class EraMainForm {
       discordEmoji:
         /^<(?:a)?:[a-zA-Z0-9_-]{1,30}:[0-9]{1,20}>$|^(\p{Emoji}\p{Emoji_Modifier}?|\p{Emoji_Presentation}|\p{Emoji_Modifier_Base}\p{Emoji_Modifier})$/u,
     },
-    message:
-      "Invalid format. Must be either <:name:id>, <a:name:id>, or a Unicode emoji.",
+    message: "Invalid format. Must be either <:name:id>, <a:name:id>, or a Unicode emoji.",
   })
   public emoji = "";
 
@@ -73,4 +72,10 @@ export class EraMainForm {
 
   @propArray(ItemForm)
   public items: ItemForm[] = [];
+
+  @propArray(MassEventForm)
+  public massKill: MassEventForm[] = [];
+
+  @propArray(MassEventForm)
+  public massRevive: MassEventForm[] = [];
 }

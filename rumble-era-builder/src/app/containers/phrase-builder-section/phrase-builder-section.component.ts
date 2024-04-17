@@ -1,9 +1,5 @@
 import { Component, Input, OnInit } from "@angular/core";
-import {
-  AbstractControl,
-  FormsModule,
-  ReactiveFormsModule,
-} from "@angular/forms";
+import { AbstractControl, FormsModule, ReactiveFormsModule } from "@angular/forms";
 import {
   IFormGroup,
   RxFormArray,
@@ -66,9 +62,7 @@ export class PhraseBuilderSectionComponent implements OnInit {
   }
 
   public addPhrase() {
-    const fg = this.formBuilder.formGroup(
-      new PhraseForm(),
-    ) as unknown as IFormGroup<PhraseForm>;
+    const fg = this.formBuilder.formGroup(new PhraseForm()) as unknown as IFormGroup<PhraseForm>;
     fg.controls.phrase.setValue("");
     this.phraseFormArray.push(fg);
     this.formGroups.push(fg);
@@ -91,8 +85,7 @@ export class PhraseBuilderSectionComponent implements OnInit {
         error += "Phrase must include exactly one player ({p1}). ";
       }
     } else if (this.playerCount == 2) {
-      const condition =
-        control.value.includes("{p1}") && control.value.includes("{p2}");
+      const condition = control.value.includes("{p1}") && control.value.includes("{p2}");
       includesPattern &&= condition;
       if (!condition) {
         error += "Phrase must include exactly two players ({p1} and {p2}). ";
@@ -116,8 +109,6 @@ export class PhraseBuilderSectionComponent implements OnInit {
       }
     }
 
-    return !includesPattern
-      ? { includesRequiredPatterns: { message: error } }
-      : null;
+    return !includesPattern ? { includesRequiredPatterns: { message: error } } : null;
   };
 }
