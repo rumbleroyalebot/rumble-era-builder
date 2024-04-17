@@ -135,7 +135,7 @@
             <mat-tab>
               <ng-template mat-tab-label>
                 {{ $any(fg).value.name | titlecase }}
-                @if (itemFormArray.touched && itemFormArray.invalid) {
+                @if (fg.touched && fg.invalid) {
                   <mat-icon icon class="tab-icon" fontIcon="warning" />
                 }
               </ng-template>
@@ -182,7 +182,7 @@
             <mat-tab>
               <ng-template mat-tab-label>
                 {{ $any(fg).value.name | titlecase }}
-                @if (massKillFormArray.touched && massKillFormArray.invalid) {
+                @if (fg.touched && fg.invalid) {
                   <mat-icon icon class="tab-icon" fontIcon="warning" />
                 }
               </ng-template>
@@ -228,7 +228,7 @@
             <mat-tab>
               <ng-template mat-tab-label>
                 {{ $any(fg).value.name | titlecase }}
-                @if (massReviveFormArray.touched && massReviveFormArray.invalid) {
+                @if (fg.touched && fg.invalid) {
                   <mat-icon icon class="tab-icon" fontIcon="warning" />
                 }
               </ng-template>
