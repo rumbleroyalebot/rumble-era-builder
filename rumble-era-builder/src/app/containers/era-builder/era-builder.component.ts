@@ -133,12 +133,12 @@ export class EraBuilderComponent implements OnInit, ComponentCanDeactivate {
   }
 
   canDeactivate(): boolean {
-    return false;
+    return !(this.formGroup.dirty && this.formGroup.touched);
   }
 
   @HostListener("window:beforeunload", ["$event"])
   unloadNotification($event: BeforeUnloadEvent): void {
-    if (this.formGroup.dirty) {
+    if (this.formGroup.dirty && this.formGroup.touched) {
       $event.preventDefault();
       $event.returnValue =
         "WARNING: You may have unsaved changes. Make sure to download new era file to not lose them.";
