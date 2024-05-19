@@ -141,7 +141,7 @@ export class EraBuilderComponent implements OnInit, ComponentCanDeactivate {
     if (this.formGroup.dirty) {
       $event.preventDefault();
       $event.returnValue =
-        "WARNING: You have unsaved changes. Make sure to download new era file to not lose them.";
+        "WARNING: You may have unsaved changes. Make sure to download new era file to not lose them.";
     }
   }
 
