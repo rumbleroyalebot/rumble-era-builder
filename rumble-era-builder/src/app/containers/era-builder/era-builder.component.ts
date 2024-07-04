@@ -209,9 +209,7 @@ export class EraBuilderComponent implements OnInit, ComponentCanDeactivate {
       this.massReviveFormArray.push(this.formBuilder.formGroup(form)),
     );
     this.formGroup.patchModelValue(this.era);
-    if (autoSave) {
-      this.openSnackBar("Loaded saved era.");
-    } else {
+    if (!autoSave) {
       this.openSnackBar("Era loaded.");
     }
   }
