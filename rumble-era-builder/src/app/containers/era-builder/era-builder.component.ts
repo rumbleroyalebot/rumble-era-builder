@@ -27,6 +27,7 @@ import { MainEraInfoComponent } from "../main-era-info/main-era-info.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MassEventForm } from "src/app/models/forms/mass-event-form";
 import { MassEventBuilderSectionComponent } from "../mass-event-builder-section/mass-event-builder-section.component";
+import { debounceTime } from "rxjs";
 
 @UntilDestroy()
 @Component({
@@ -117,6 +118,19 @@ export class EraBuilderComponent implements OnInit, ComponentCanDeactivate {
         this.samples.massRevive = era.events.mass_revive.available;
       });
 
+    const eraAutoSave = localStorage.getItem("eraAutoSave");
+    if (eraAutoSave) {
+      this.loadEra(eraAutoSave, true);
+    }
+
+    this.formGroup.valueChanges.pipe(debounceTime(1000)).subscribe(() => {
+      localStorage.setItem(
+        "eraAutoSave",
+        JSON.stringify(this.jsonService.generateEraJSON(this.formGroup.value)),
+      );
+      console.log("saved");
+    });
+
     // this.formGroup.valueChanges
     //   .pipe(
     //     untilDestroyed(this),
@@ -140,6 +154,10 @@ export class EraBuilderComponent implements OnInit, ComponentCanDeactivate {
   unloadNotification($event: BeforeUnloadEvent): void {
     if (this.formGroup.dirty && this.formGroup.touched) {
       $event.preventDefault();
+      localStorage.setItem(
+        "eraAutoSave",
+        JSON.stringify(this.jsonService.generateEraJSON(this.formGroup.value)),
+      );
       $event.returnValue =
         "WARNING: You may have unsaved changes. Make sure to download new era file to not lose them.";
     }
@@ -173,7 +191,7 @@ export class EraBuilderComponent implements OnInit, ComponentCanDeactivate {
     }
   }
 
-  public loadEra(text: string) {
+  public loadEra(text: string, autoSave: boolean) {
     const parsed = this.jsonService.parseJSON(text);
     this.itemFormArray.clear();
     this.massKillFormArray.clear();
@@ -191,7 +209,11 @@ export class EraBuilderComponent implements OnInit, ComponentCanDeactivate {
       this.massReviveFormArray.push(this.formBuilder.formGroup(form)),
     );
     this.formGroup.patchModelValue(this.era);
-    this.openSnackBar("Era loaded.");
+    if (autoSave) {
+      this.openSnackBar("Loaded saved era.");
+    } else {
+      this.openSnackBar("Era loaded.");
+    }
   }
 
   public addItem() {
@@ -243,7 +265,7 @@ export class EraBuilderComponent implements OnInit, ComponentCanDeactivate {
       const reader = new FileReader();
       reader.onload = (e: ProgressEvent<FileReader>) => {
         const content = e.target?.result as string;
-        this.loadEra(content);
+        this.loadEra(content, false);
       };
       reader.readAsText(file);
     }
@@ -278,6 +300,21 @@ export class EraBuilderComponent implements OnInit, ComponentCanDeactivate {
     URL.revokeObjectURL(url);
     this.openSnackBar("Era file download started.");
     this.formGroup.markAsPristine();
+  }
+
+  public clearEra() {
+    if (
+      window.confirm(
+        "Are you sure you want to clear everything? Make sure you download your era first.",
+      )
+    ) {
+      this.itemFormArray.clear();
+      this.massKillFormArray.clear();
+      this.massReviveFormArray.clear();
+      this.era = new EraMainForm();
+      this.formGroup.patchModelValue(this.era);
+      this.formGroup.markAsUntouched();
+    }
   }
 
   private openSnackBar(message: string, action = "Dismiss") {

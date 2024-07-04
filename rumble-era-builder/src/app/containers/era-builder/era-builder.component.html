@@ -8,6 +8,10 @@
     <button type="button" mat-raised-button color="primary" (click)="file.click()">
       Upload Era File
     </button>
+
+    <button mat-raised-button color="warn" (click)="clearEra()">
+      Clear Era
+    </button>
   </div>
 
   <form>
@@ -266,7 +270,7 @@
       <button type="button" mat-raised-button color="accent" (click)="buildEra()">
         Build Preview
       </button>
-      <button type="button" mat-raised-button color="accent" (click)="loadEra(JSONOutput.value)">
+      <button type="button" mat-raised-button color="accent" (click)="loadEra(JSONOutput.value, false)">
         Load From Preview
       </button>
     </div>
