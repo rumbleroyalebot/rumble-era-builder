@@ -22,7 +22,8 @@
 }
 
 .faq-item {
-    max-width: 100%;
+    box-sizing: border-box;
+    width: 100%;
     border: 1px solid #cacaca;
     background-color: #ffffff;
     margin-bottom: 16px;
@@ -64,6 +65,15 @@
     line-height: 32px;
     letter-spacing: 0.5px;
     text-align: start;
+}
+
+.faq-item .answer a {
+    color: #3f51b5;
+    transition: 0.4s ease all;
+}
+
+.faq-item .answer a:hover {
+    color: black;
 }
 
 .answer span,
